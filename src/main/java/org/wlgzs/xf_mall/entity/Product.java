@@ -1,5 +1,7 @@
 package org.wlgzs.xf_mall.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 /**
@@ -9,6 +11,7 @@ import javax.persistence.*;
  **/
 
 @Entity
+@Data
 @Table(name = "xfm_product")
 public class Product {
 

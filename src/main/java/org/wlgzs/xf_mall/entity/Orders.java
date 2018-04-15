@@ -1,5 +1,7 @@
 package org.wlgzs.xf_mall.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
 /**
@@ -8,6 +10,7 @@ import javax.persistence.*;
  * @description:订单表
  **/
 @Entity
+@Data
 @Table(name = "xfm_order")
 public class Orders {
     @Id
@@ -32,7 +35,7 @@ public class Orders {
     @Column(nullable = false,length = 10)
     private String order_freight;//运费
 
-    @Column(nullable = false,length = 10)
+    @Column(nullable = false)
     private Integer order_discount;//折扣
 
     @Column(nullable = false)
@@ -74,13 +77,13 @@ public class Orders {
     @Column(nullable = false,length = 10)
     private String order_methodOfPurchase;//购买方式
 
-    @Column(nullable = false,length = 10)
-    private Integer product_id;//商品id
+    @Column(nullable = false)
+    private Long product_id;//商品id
 
-    @Column(nullable = false,length = 10)
-    private Integer user_id;//用户id
+    @Column(nullable = false)
+    private Long user_id;//用户id
 
-    @Column(nullable = false,length = 10)
+    @Column(nullable = false)
     private Integer order_quantity;//购买数量
 
 }
