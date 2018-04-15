@@ -10,8 +10,16 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     platform: org.hibernate.dialect.MySQL5InnoDBDialect
   jpa:
+<<<<<<< HEAD
     hibernate:
       ddl-auto: update
     show-sql: true
   thymeleaf:
     cache: false
+=======
+      hibernate:
+        ddl-auto: update
+      show-sql: true
+  thymeleaf:
+    cache: false
+>>>>>>> b77616cf504c907cb9edd662d58a1ad86e2e484c
