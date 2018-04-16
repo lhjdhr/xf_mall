@@ -11,7 +11,6 @@ import java.util.Date;
  **/
 @Entity
 @Data
-@Table(name = "xfm_order")
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

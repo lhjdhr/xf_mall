@@ -10,7 +10,6 @@ import javax.persistence.*;
  */
 @Entity
 @Data
-@Table(name = "product_category")
 public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -15,7 +15,6 @@ import javax.persistence.Id;
  **/
 @Entity
 @Data
-@Table(name = "xfm_user")
 public class User {
     @Id
     @GeneratedValue()
