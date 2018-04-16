@@ -1,7 +1,6 @@
 package org.wlgzs.xf_mall.entity;
 
 import lombok.Data;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -12,6 +11,7 @@ import java.util.Date;
  **/
 @Entity
 @Data
+@Table(name = "xfm_order")
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -60,6 +60,5 @@ public class Orders {
     private String order_methodOfPurchase;//购买方式
     @Column(nullable = false)
     private int order_quantity;//购买数量
-
 }
 

@@ -9,6 +9,7 @@ import javax.persistence.*;
  * @createTime 2018-04-14 16:43
  * @description:商品表
  **/
+@Table(name = "xfm_product")
 @Entity
 @Data
 public class Product {
