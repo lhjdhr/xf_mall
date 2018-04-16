@@ -13,7 +13,7 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    @Resource
+    /*@Resource
     UserService userService;
 
 
@@ -27,13 +27,13 @@ public class UserController {
     public String add(User user) {
         userService.save(user);
         return "redirect:/list";
-    }
+    }*/
 
 
     //删除
-    @RequestMapping("/delete")
+    /*@RequestMapping("/delete")
     public String delete(Long id) {
         userService.delete(id);
         return "redirect:/list";
-    }
+    }*/
 }
