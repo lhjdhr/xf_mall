@@ -31,9 +31,5 @@ public class User {
     private String user_password;//密码
     @Column(nullable = false,length = 20)
     private String user_mail;//邮箱
-    @Column(length = 50)
-    private String user_favorite;//收藏商品
-    @Column(length = 50)
-    private String user_footPrint;//足迹
 
 }
