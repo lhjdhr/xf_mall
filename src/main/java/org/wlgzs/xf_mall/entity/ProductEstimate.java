@@ -20,6 +20,7 @@ public class ProductEstimate {
     private long user_id;  //用户id
     @Column(nullable = false,length = 30)
     private String user_name;  //用户名
+    @Column(nullable = false)
     private int estimate_isNameless;  //是否匿名
     @Column(nullable = false,length = 50)
     private String product_specification;  //商品规格信息
