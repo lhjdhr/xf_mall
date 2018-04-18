@@ -40,9 +40,7 @@ public class Product {
     @Column(nullable = false)
     private int product_isRedeemable;//是否可用积分兑换
     @Column(nullable = false)
-    private int product_needsPoints;//需要多少积分
-    @Column(nullable = false)
-    private int product_getCredits;//购买可获得多少积分
+    private int product_points;//需要多少积分
     @Column(nullable = false)
     private int product_Inventory;//库存
 }

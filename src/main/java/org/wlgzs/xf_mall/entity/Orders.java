@@ -36,7 +36,7 @@ public class Orders {
     @Column(nullable = false)
     private int product_isRedeemable;//是否可用积分兑换
     @Column(nullable = false)
-    private int product_needsPoints;//需要多少积分
+    private int product_points;//需要多少积分
     @Column(nullable = false,length = 20)
     private String order_number;//订单号
     @Column(nullable = false,length = 20)
