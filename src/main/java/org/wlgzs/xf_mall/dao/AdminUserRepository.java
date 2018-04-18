@@ -1,4 +1,4 @@
-package org.wlgzs.xf_mall.repository;
+package org.wlgzs.xf_mall.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;

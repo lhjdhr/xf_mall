@@ -3,7 +3,7 @@ package org.wlgzs.xf_mall.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.wlgzs.xf_mall.entity.User ;
-import org.wlgzs.xf_mall.repository.AdminUserRepository;
+import org.wlgzs.xf_mall.dao.AdminUserRepository;
 import org.wlgzs.xf_mall.service.AdminUserService;
 
 import java.util.List;
