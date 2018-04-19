@@ -21,4 +21,6 @@ public interface AdminUserService {
 
     void delete(long id);
 
+    List<User> findByUserName(String user_name);
+
 }

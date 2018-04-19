@@ -44,6 +44,6 @@ public class Product {
     @Column(nullable = false)
     private int product_needPoints;//需要多少积分才能兑换
     @Column(nullable = false)
-    private int product_Inventory;//库存
+    private int product_inventory;//库存
 }
 

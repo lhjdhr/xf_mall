@@ -48,6 +48,12 @@ public class AdminUserServiceImpl implements AdminUserService {
     public void delete(long id) {
         userRepository.deleteById(id);
     }
+
+    //后台搜索用户
+    @Override
+    public List<User> findByUserName(String user_name) {
+        return userRepository.findByUserName(user_name);
+    }
 }
 
 

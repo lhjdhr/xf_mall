@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>添加商品</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h1>添加商品</h1>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal"   th:action="@{/AdminProductController/adminAddProduct}"  method="post">
+        <div class="form-group">
+            <label for="product_inventory" class="col-sm-2 control-label">库存</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_inventory"  id="product_inventory" placeholder="库存"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_activity" class="col-sm-2 control-label" >活动名称</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_activity" id="product_activity" placeholder="活动名称"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_category" class="col-sm-2 control-label">类别</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_category"  id="product_category" placeholder="类别"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_counterPrice" class="col-sm-2 control-label">专柜价</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_counterPrice"  id="product_counterPrice" placeholder="专柜价"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_details" class="col-sm-2 control-label">商品详情</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_details"  id="product_details" placeholder="商品详情"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_isRedeemable" class="col-sm-2 control-label">是否可兑换</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_isRedeemable"  id="product_isRedeemable" placeholder="是否可兑换"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_isShelf" class="col-sm-2 control-label">是否上架</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_isShelf"  id="product_isShelf" placeholder="是否上架"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_isTop" class="col-sm-2 control-label">是否热门</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_isTop"  id="product_isTop" placeholder="是否热门"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_keywords" class="col-sm-2 control-label">关键字</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_keywords"  id="product_keywords" placeholder="关键字"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_mallPrice" class="col-sm-2 control-label">商城价</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_mallPrice"  id="product_mallPrice" placeholder="商城价"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_needPoints" class="col-sm-2 control-label">需要积分</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_needPoints"  id="product_needPoints" placeholder="需要积分"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_getPoints" class="col-sm-2 control-label">得到积分</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_getPoints"  id="product_getPoints" placeholder="得到积分"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_picture" class="col-sm-2 control-label">图片</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_picture"  id="product_picture" placeholder="图片"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_serviceType" class="col-sm-2 control-label">服务类型</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_serviceType"  id="product_serviceType" placeholder="服务类型"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="product_specification" class="col-sm-2 control-label">商品规格</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="product_specification"  id="product_specification" placeholder="商品规格"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Submit" class="btn btn-info" />
+                &nbsp; &nbsp; &nbsp;
+                <input type="reset" value="Reset" class="btn btn-info" />
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

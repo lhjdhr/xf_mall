@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>user</title>
+    <title>修改用户</title>
     <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
 </head>
 <body class="container">
@@ -10,7 +10,7 @@
 <h1>修改用户</h1>
 <br/><br/>
 <div class="with:80%">
-    <form class="form-horizontal"   th:action="@{/adminEditUser}" th:object="${user}"  method="post">
+    <form class="form-horizontal"   th:action="@{/AdminUserController/adminEditUser}" th:object="${user}"  method="post">
         <input type="hidden" name="user_id" th:value="*{user_id}" />
         <div class="form-group">
             <label for="user_name" class="col-sm-2 control-label">userName</label>
@@ -40,7 +40,7 @@
             <div class="col-sm-offset-2 col-sm-10">
                 <input type="submit" value="Submit" class="btn btn-info" />
                 &nbsp; &nbsp; &nbsp;
-                <a href="/toAdminAddUser" th:href="@{/adminUserList}" class="btn btn-info">Back</a>
+                <a th:href="@{/AdminUserController/adminUserList}" class="btn btn-info">Back</a>
             </div>
 
         </div>

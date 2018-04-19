@@ -21,47 +21,86 @@ public class AdminUserController {
 
     @RequestMapping("/")
     public String index() {
-        return "redirect:/adminUserList";
+        return "redirect:/AdminUserController/adminUserList";
     }
-
-    //后台遍历用户
-    @RequestMapping("/adminUserList")
+    /**
+     * @author 阿杰
+     * @param [model]
+     * @return java.lang.String
+     * @description 后台遍历用户
+     */
+    @RequestMapping("/AdminUserController/adminUserList")
     public String list(Model model) {
         List<User> users=userService.getUserList();
         model.addAttribute("users", users);
         return "user/adminUserList";
     }
-
-    @RequestMapping("/toAdminAddUser")
+    /**
+     * @author 阿杰
+     * @param [model, user_name]
+     * @return java.lang.String
+     * @description 搜索用户
+     */
+    @RequestMapping("/AdminUserController/adminFindUser")
+    public  String findUserName(Model model,String user_name){
+        List<User> users = userService.findByUserName(user_name);
+        model.addAttribute("users",users);
+        model.addAttribute("user_name",user_name);
+        return "user/adminUserList";
+    }
+    /**
+     * @author 阿杰
+     * @return java.lang.String
+     * @description 跳转至增加用户页面
+     */
+    @RequestMapping("/AdminUserController/toAdminAddUser")
     public String toAdd() {
         return "user/adminAddUser";
     }
-
-    //后台增加用户
-    @RequestMapping("/adminAddUser")
+    /**
+     * @author 阿杰
+     * @param [user]
+     * @return java.lang.String
+     * @description 后台增加用户
+     */
+    @RequestMapping("/AdminUserController/adminAddUser")
     public String add(User user) {
         userService.save(user);
-        return "redirect:/adminUserList";
+        return "redirect:/AdminUserController/adminUserList";
     }
 
-    @RequestMapping("/toAdminEditUser")
+    /**
+     * @author 阿杰
+     * @param [model, id]
+     * @return java.lang.String
+     * @description 跳转至修改用户页面
+     */
+    @RequestMapping("/AdminUserController/toAdminEditUser")
     public String toEdit(Model model, Long id) {
         User user=userService.findUserById(id);
         model.addAttribute("user", user);
         return "user/adminEditUser";
     }
-
-    //后台修改用户
-    @RequestMapping("/adminEditUser")
+    /**
+     * @author 阿杰
+     * @param [user]
+     * @return java.lang.String
+     * @description 后台修改用户
+     */
+    @RequestMapping("/AdminUserController/adminEditUser")
     public String edit(User user) {
         userService.edit(user);
-        return "redirect:/adminUserList";
+        return "redirect:/AdminUserController/adminUserList";
     }
-
-    //后台删除用户
-    @RequestMapping("/adminDeleteUser")
+    /**
+     * @author 阿杰
+     * @param [id]
+     * @return java.lang.String
+     * @description 后台删除用户
+     */
+    @RequestMapping("/AdminUserController/adminDeleteUser")
     public String delete(Long id) {
         userService.delete(id);
-        return "redirect:/adminUserList";
+        return "redirect:/AdminUserController/adminUserList";
     }
 }
