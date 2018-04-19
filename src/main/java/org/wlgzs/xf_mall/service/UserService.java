@@ -9,7 +9,7 @@ import java.util.List;
  * @Date: 2018/4/15 13:28
  * @Description: 后台增删改查service层
  */
-public interface AdminUserService {
+public interface UserService {
 
     List<User> getUserList();
 

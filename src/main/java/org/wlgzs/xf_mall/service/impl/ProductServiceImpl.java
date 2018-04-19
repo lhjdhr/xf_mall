@@ -2,9 +2,9 @@ package org.wlgzs.xf_mall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.wlgzs.xf_mall.dao.AdminProductRepository;
+import org.wlgzs.xf_mall.dao.ProductRepository;
 import org.wlgzs.xf_mall.entity.Product;
-import org.wlgzs.xf_mall.service.AdminProductService;
+import org.wlgzs.xf_mall.service.ProductService;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import java.util.List;
  * @Description:
  */
 @Service
-public class AdminProductServiceImpl implements AdminProductService {
+public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private AdminProductRepository productRepository;
+    private ProductRepository productRepository;
 
     //遍历商品
     @Override

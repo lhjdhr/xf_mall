@@ -13,7 +13,7 @@ import java.util.List;
  * @Date: 2018/4/18 20:59
  * @Description:
  */
-public interface AdminProductRepository  extends JpaRepository<Product, Long>,JpaSpecificationExecutor<Product> {
+public interface ProductRepository extends JpaRepository<Product, Long>,JpaSpecificationExecutor<Product> {
 
     Product findById(long id);
 

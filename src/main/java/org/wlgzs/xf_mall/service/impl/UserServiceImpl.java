@@ -3,8 +3,8 @@ package org.wlgzs.xf_mall.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.wlgzs.xf_mall.entity.User ;
-import org.wlgzs.xf_mall.dao.AdminUserRepository;
-import org.wlgzs.xf_mall.service.AdminUserService;
+import org.wlgzs.xf_mall.dao.UserRepository;
+import org.wlgzs.xf_mall.service.UserService;
 
 import java.util.List;
 
@@ -14,10 +14,10 @@ import java.util.List;
  * @Description: 用户增删改查的实现方法
  */
 @Service
-public class AdminUserServiceImpl implements AdminUserService {
+public class UserServiceImpl implements UserService {
 
     @Autowired
-    private AdminUserRepository userRepository;
+    private UserRepository userRepository;
 
     //后台遍历用户
     @Override

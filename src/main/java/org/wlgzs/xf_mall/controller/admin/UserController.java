@@ -1,10 +1,10 @@
-package org.wlgzs.xf_mall.controller;
+package org.wlgzs.xf_mall.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.wlgzs.xf_mall.entity.User ;
-import org.wlgzs.xf_mall.service.AdminUserService;
+import org.wlgzs.xf_mall.service.UserService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,9 +15,9 @@ import java.util.List;
  * @Description: 后台用户增删改查控制层
  */
 @Controller
-public class AdminUserController {
+public class UserController {
     @Resource
-    AdminUserService userService;
+    UserService userService;
 
     @RequestMapping("/")
     public String index() {
@@ -33,7 +33,7 @@ public class AdminUserController {
     public String list(Model model) {
         List<User> users=userService.getUserList();
         model.addAttribute("users", users);
-        return "user/adminUserList";
+        return "admin/adminUserList";
     }
     /**
      * @author 阿杰
@@ -46,7 +46,7 @@ public class AdminUserController {
         List<User> users = userService.findByUserName(user_name);
         model.addAttribute("users",users);
         model.addAttribute("user_name",user_name);
-        return "user/adminUserList";
+        return "admin/adminUserList";
     }
     /**
      * @author 阿杰
@@ -55,7 +55,7 @@ public class AdminUserController {
      */
     @RequestMapping("/AdminUserController/toAdminAddUser")
     public String toAdd() {
-        return "user/adminAddUser";
+        return "admin/adminAddUser";
     }
     /**
      * @author 阿杰
@@ -79,7 +79,7 @@ public class AdminUserController {
     public String toEdit(Model model, Long id) {
         User user=userService.findUserById(id);
         model.addAttribute("user", user);
-        return "user/adminEditUser";
+        return "admin/adminEditUser";
     }
     /**
      * @author 阿杰

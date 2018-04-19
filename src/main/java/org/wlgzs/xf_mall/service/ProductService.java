@@ -9,7 +9,7 @@ import java.util.List;
  * @Date: 2018/4/18 20:58
  * @Description:
  */
-public interface AdminProductService {
+public interface ProductService {
 
     List<Product> getProductList();
 

@@ -1,10 +1,10 @@
-package org.wlgzs.xf_mall.controller;
+package org.wlgzs.xf_mall.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.wlgzs.xf_mall.entity.Product;
-import org.wlgzs.xf_mall.service.AdminProductService;
+import org.wlgzs.xf_mall.service.ProductService;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,9 +15,9 @@ import java.util.List;
  * @Description: 后台商品管理
  */
 @Controller
-public class AdminProductController {
+public class ProductController {
     @Resource
-    AdminProductService productService;
+    ProductService productService;
     /**
      * @author 阿杰
      * @param [model]

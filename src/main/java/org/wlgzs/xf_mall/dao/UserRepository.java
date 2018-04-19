@@ -14,7 +14,7 @@ import java.util.List;
  * @Date: 2018/4/15 13:16
  * @Description: 接口
  */
-public interface AdminUserRepository extends JpaRepository<User, Long>,JpaSpecificationExecutor<User> {
+public interface UserRepository extends JpaRepository<User, Long>,JpaSpecificationExecutor<User> {
 
     User findById(long id);
 
