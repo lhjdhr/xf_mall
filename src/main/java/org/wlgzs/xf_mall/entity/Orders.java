@@ -20,7 +20,7 @@ public class Orders {
     @Column(nullable = false)
     private long user_id;//用户id
     @Column(nullable = false,length = 30)
-    private String user_name;//用户id
+    private String user_name;//用户名
     @Column(nullable = false,length = 200)
     private String product_picture;//商品图片
     @Column(nullable = false,length = 50)
