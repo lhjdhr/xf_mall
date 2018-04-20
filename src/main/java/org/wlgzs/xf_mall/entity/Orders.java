@@ -1,6 +1,8 @@
 package org.wlgzs.xf_mall.entity;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -53,11 +55,11 @@ public class Orders {
     private String address_shipping;//收货地址
     @Column(nullable = false,length = 11)
     private String address_phone;//收货电话
-    @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date order_purchaseTime;//下单时间
-    @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date order_deliveryTime;//发货时间
-    @Column(nullable = false)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date order_dealTime;//成交时间
     @Column(nullable = false,length = 10)
     private String order_methodOfPurchase;//购买方式

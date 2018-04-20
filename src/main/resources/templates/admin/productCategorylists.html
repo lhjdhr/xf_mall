@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>分类列表</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h1>分类列表</h1>
+<br/><br/>
+<div class="with:80%">
+    <form th:action="@{/AdminProductController/findProductCategory}"  method="post">
+        <div>
+            <input type="text" id="category_name" name="category_name" th:value="*{category_name}" placeholder="分类名" >
+            <input type="submit" value="搜索" class="btn btn-info" />
+        </div>
+    </form>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>分类名</th>
+            <th>父类名</th>
+            <!--<th>Edit</th>-->
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="productCategory : ${productCategories}">
+            <th scope="row" th:text="${productCategory.category_id}"></th>
+            <td th:text="${productCategory.category_name}"></td>
+            <td th:if="${productCategory.parent_name=='0'}">一级分类</td>
+            <td th:if="${productCategory.parent_name!='0'}" th:text="${productCategory.parent_name}"></td>
+            <td><a th:href="@{/AdminProductController/toAdminEditProductCategory(id=${productCategory.category_id})}">edit</a></td>
+            <td><a th:href="@{/AdminProductController/deleteProductCategory(id=${productCategory.category_id})}">delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/AdminProductController/toAddProductOneCategory}" class="btn btn-info">添加一级分类</a>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/AdminProductController/toAddProductCategory}" class="btn btn-info">添加二级分类</a>
+    </div>
+</div>
+
+</body>
+</html>
