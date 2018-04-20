@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>修改分类</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+</head>
+<body class="container">
+<br/>
+<h1>修改分类</h1>
+<br/><br/>
+<div class="with:80%">
+    <form class="form-horizontal"   th:action="@{/AdminProductController/adminEditProductCategory}" th:object="${productCategory}"  method="post">
+        <input type="hidden" name="category_id" th:value="*{category_id}" />
+        <div th:if="*{parent_name=='0'}">
+            <p>此分类为一级分类</p>
+        </div>
+        <div class="form-group">
+            <label for="category_name" class="col-sm-2 control-label">分类名</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="category_name"  id="category_name" th:value="*{category_name}" placeholder="分类名"/>
+            </div>
+        </div>
+        <div class="form-group" th:if="*{parent_name=='0'}" style="display: none">
+            <label for="parent_name" class="col-sm-2 control-label" >父类名</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="parent_name" th:value="*{parent_name}" placeholder="父类名"/>
+            </div>
+        </div>
+        <div class="form-group" th:if="*{parent_name!='0'}">
+            <label for="parent_name" class="col-sm-2 control-label" >父类名</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="parent_name" id="parent_name" th:value="*{parent_name}" placeholder="父类名"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" value="Submit" class="btn btn-info" />
+                &nbsp; &nbsp; &nbsp;
+                <a th:href="@{/AdminProductController/productCategoryList}" class="btn btn-info">Back</a>
+            </div>
+
+        </div>
+    </form>
+</div>
+</body>
+</html>

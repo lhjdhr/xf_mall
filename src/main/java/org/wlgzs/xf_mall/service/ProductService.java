@@ -1,6 +1,7 @@
 package org.wlgzs.xf_mall.service;
 
 import org.wlgzs.xf_mall.entity.Product;
+import org.wlgzs.xf_mall.entity.ProductCategory;
 
 import java.util.List;
 
@@ -13,13 +14,27 @@ public interface ProductService {
 
     List<Product> getProductList();
 
-    Product findProductById(long id);
-
     void save(Product product);
 
     void edit(Product product);
 
     void delete(long id);
 
+    Product findProductById(long id);
+
     List<Product> findByProductKeywords(String product_keywords);
+
+    List<ProductCategory> getProductCategoryList();
+
+    void save(ProductCategory productCategory);
+
+    void saveOne(ProductCategory productCategory);
+
+    void editCategory(ProductCategory productCategory);
+
+    void deleteCategory(long id);
+
+    ProductCategory findProductCategoryById(long id);
+
+    List<ProductCategory> findByProductCategory(String category_name);
 }

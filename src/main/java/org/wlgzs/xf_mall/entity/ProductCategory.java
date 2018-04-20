@@ -16,5 +16,6 @@ public class ProductCategory {
     private long category_id;  //商品类别id
     @Column(nullable = false,length = 10)
     private String category_name;  //类别名称
-    private int parentId; //父id
+    @Column(nullable = false,length = 10)
+    private String parent_name; //父分类名字
 }
