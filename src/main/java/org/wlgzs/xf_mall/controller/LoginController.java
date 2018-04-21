@@ -24,8 +24,9 @@ public class LoginController {
     @Resource
     UserService userService;
 
-    @RequestMapping("/register")
+    @RequestMapping("/registered")
     public String register(User user){
+        System.out.println("123");
         userService.save(user);
         return "redirect:/login";
     }
