@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
  **/
 public interface LogUserService {
 
-    public User login(HttpServletRequest request,String user_name, String user_password);
+    User login(HttpServletRequest request,String user_name, String user_password);
 
-    public void cancellation(HttpServletRequest request);
+    void cancellation(HttpServletRequest request);
 
 }

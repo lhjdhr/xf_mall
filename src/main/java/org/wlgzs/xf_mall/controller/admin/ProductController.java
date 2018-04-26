@@ -1,21 +1,36 @@
 package org.wlgzs.xf_mall.controller.admin;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import org.wlgzs.xf_mall.entity.Product;
 import org.wlgzs.xf_mall.entity.ProductCategory;
+import org.wlgzs.xf_mall.entity.Result;
 import org.wlgzs.xf_mall.service.ProductService;
+import org.wlgzs.xf_mall.utli.ResultUtil;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  * @Auther: 阿杰
  * @Date: 2018/4/18 20:51
  * @Description: 后台商品管理
  */
-@Controller
+@RequestMapping("AdminProductController")
+@RestController
 public class ProductController {
     @Resource
     ProductService productService;
@@ -25,11 +40,11 @@ public class ProductController {
      * @return java.lang.String
      * @description 后台商品列表
      */
-    @RequestMapping("/AdminProductController/adminProductList")
-    public String list(Model model) {
+    @RequestMapping(value = "/adminProductList")
+    public ModelAndView list(Model model) {
         List<Product> products = productService.getProductList();
         model.addAttribute("products",products);
-        return "admin/adminProductList";
+        return new ModelAndView("admin/adminProductList");
     }
     /**
      * @author 阿杰
@@ -37,21 +52,45 @@ public class ProductController {
      * @return java.lang.String
      * @description 搜索商品
      */
-    @RequestMapping("/AdminProductController/adminFindProduct")
-    public  String findProduct(Model model,String product_keywords){
+    @RequestMapping("/adminFindProduct")
+    public  ModelAndView findProduct(Model model,String product_keywords){
         List<Product> products = productService.findByProductKeywords(product_keywords);
         model.addAttribute("products",products);
         model.addAttribute("product_keywords",product_keywords);
-        return "admin/adminProductList";
+        return new ModelAndView("admin/adminProductList");
     }
     /**
      * @author 阿杰
      * @return java.lang.String
      * @description 跳转到添加商品
      */
-    @RequestMapping("/AdminProductController/toAdminAddProduct")
-    public String toAdd(){
-        return "admin/adminAddProduct";
+    @RequestMapping(value = "/toAdminAddProduct")
+    public ModelAndView toAdd(){
+        return new ModelAndView("admin/adminAddProduct");
+    }
+    /**
+     * @author 阿杰
+     * @param [myFileName, session, request]
+     * @return org.wlgzs.xf_mall.entity.Result
+     * @description 富文本图片上传
+     */
+    @RequestMapping("/upload")
+    public Result uploadImg(MultipartFile myFileName, HttpSession session, HttpServletRequest request) throws IllegalStateException, IOException {
+        String realName = "";
+        if (myFileName != null) {
+            String fileName = myFileName.getOriginalFilename();
+            String fileNameExtension = fileName.substring(fileName.indexOf("."), fileName.length());
+
+            // 生成实际存储的真实文件名
+            realName = UUID.randomUUID().toString() + fileNameExtension;
+
+            // "/upload"是你自己定义的上传目录
+            String realPath = session.getServletContext().getRealPath("/upload");
+            File uploadFile = new File(realPath, realName);
+            myFileName.transferTo(uploadFile);
+        }
+        String [] str = {request.getContextPath() + "/upload/" + realName};
+        return ResultUtil.success(str);
     }
     /**
      * @author 阿杰
@@ -59,10 +98,50 @@ public class ProductController {
      * @return java.lang.String
      * @description 添加商品
      */
-    @RequestMapping("/AdminProductController/adminAddProduct")
-    public String add(Product product){
+    @RequestMapping("/adminAddProduct")
+    public ModelAndView add(String product_details, @RequestParam("file") MultipartFile[] myFileNames, HttpSession session,
+                            Model model, HttpServletRequest request) throws IOException {
+        String realName = "";
+        String[] str = new String[myFileNames.length];
+        for (int i = 0; i < myFileNames.length; i++) {
+            if (!myFileNames[i].getOriginalFilename().equals("")) {
+                String fileName = myFileNames[i].getOriginalFilename();
+                String fileNameExtension = fileName.substring(fileName.indexOf("."), fileName.length());
+
+                // 生成实际存储的真实文件名
+                realName = UUID.randomUUID().toString() + fileNameExtension;
+
+                // "/upload"是你自己定义的上传目录
+                String realPath = session.getServletContext().getRealPath("/upload");
+                File uploadFile = new File(realPath, realName);
+                myFileNames[i].transferTo(uploadFile);
+            }
+            if(!myFileNames[i].getOriginalFilename().equals("")){
+                str[i] = request.getContextPath() + "/upload/" + realName;
+            }
+        }
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 0; i < str.length; i++) {
+            if(!myFileNames[i].getOriginalFilename().equals("")) {
+                stringBuffer.append(str[i] + ",");
+            }
+        }
+        String product_picture = stringBuffer.substring(0,stringBuffer.length()-1);
+
+        Map<String, String[]> properties = request.getParameterMap();
+        Product product = new Product();
+        try {
+            BeanUtils.populate(product, properties);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        product.setProduct_details(product_details);
+        product.setProduct_picture(product_picture);
         productService.save(product);
-        return "redirect:/AdminProductController/adminProductList";
+        model.addAttribute("product_details",product_details);
+        return new ModelAndView("redirect:/AdminProductController/adminProductList");
     }
     /**
      * @author 阿杰
@@ -70,11 +149,11 @@ public class ProductController {
      * @return java.lang.String
      * @description 跳转至修改商品页面
      */
-    @RequestMapping("/AdminProductController/toAdminEditProduct")
-    public String toEdit(Model model, Long id) {
-        Product product=productService.findProductById(id);
+    @RequestMapping("/toAdminEditProduct")
+    public ModelAndView toEdit(Model model, long product_id) {
+        Product product=productService.findProductById(product_id);
         model.addAttribute("product", product);
-        return "admin/adminEditProduct";
+        return new ModelAndView("admin/adminEditProduct");
     }
     /**
      * @author 阿杰
@@ -82,10 +161,10 @@ public class ProductController {
      * @return java.lang.String
      * @description 修改商品
      */
-    @RequestMapping("/AdminProductController/adminEditProduct")
-    public String edit(Product product) {
+    @RequestMapping("/adminEditProduct")
+    public ModelAndView edit(Product product) {
         productService.edit(product);
-        return "redirect:/AdminProductController/adminProductList";
+        return new ModelAndView("redirect:/AdminProductController/adminProductList");
     }
     /**
      * @author 阿杰
@@ -93,10 +172,10 @@ public class ProductController {
      * @return java.lang.String
      * @description 删除商品
      */
-    @RequestMapping("/AdminProductController/adminDeleteProduct")
-    public String delete(Long id) {
-        productService.delete(id);
-        return "redirect:/AdminProductController/adminProductList";
+    @RequestMapping("/adminDeleteProduct")
+    public ModelAndView delete(long product_id) {
+        productService.delete(product_id);
+        return new ModelAndView("redirect:/AdminProductController/adminProductList");
     }
     /**
      * @author 阿杰
@@ -104,11 +183,11 @@ public class ProductController {
      * @return java.lang.String
      * @description 遍历所有分类
      */
-    @RequestMapping("/AdminProductController/productCategoryList")
-    public String category(Model model){
+    @RequestMapping("/productCategoryList")
+    public ModelAndView category(Model model){
         List<ProductCategory> productCategories = productService.getProductCategoryList();
         model.addAttribute("productCategories",productCategories);
-        return "admin/productCategorylists";
+        return new ModelAndView("admin/productCategorylists");
     }
     /**
      * @author 阿杰
@@ -116,9 +195,9 @@ public class ProductController {
      * @return java.lang.String
      * @description 跳转至添加一级分类页面
      */
-    @RequestMapping("/AdminProductController/toAddProductOneCategory")
-    public String toAddOneCategory(){
-        return "admin/addProductOneCategory";
+    @RequestMapping("/toAddProductOneCategory")
+    public ModelAndView toAddOneCategory(){
+        return new ModelAndView("admin/addProductOneCategory");
     }
     /**
      * @author 阿杰
@@ -126,10 +205,10 @@ public class ProductController {
      * @return java.lang.String
      * @description 添加一级分类
      */
-    @RequestMapping("/AdminProductController/addProductOneCategory")
-    public String addOneCategory(ProductCategory productCategory){
+    @RequestMapping("/addProductOneCategory")
+    public ModelAndView addOneCategory(ProductCategory productCategory){
         productService.saveOne(productCategory);
-        return "redirect:/AdminProductController/productCategoryList";
+        return new ModelAndView("redirect:/AdminProductController/productCategoryList");
     }
     /**
      * @author 阿杰
@@ -137,9 +216,9 @@ public class ProductController {
      * @return java.lang.String
      * @description 跳转至添加二级分类页面
      */
-    @RequestMapping("/AdminProductController/toAddProductCategory")
-    public String toAddCategory(){
-        return "admin/addProductCategory";
+    @RequestMapping("/toAddProductCategory")
+    public ModelAndView toAddCategory(){
+        return new ModelAndView("admin/addProductCategory");
     }
     /**
      * @author 阿杰
@@ -147,10 +226,10 @@ public class ProductController {
      * @return java.lang.String
      * @description 添加二级分类
      */
-    @RequestMapping("/AdminProductController/addProductCategory")
-    public String addCategory(ProductCategory productCategory){
+    @RequestMapping("/addProductCategory")
+    public ModelAndView addCategory(ProductCategory productCategory){
         productService.save(productCategory);
-        return "redirect:/AdminProductController/productCategoryList";
+        return new ModelAndView("redirect:/AdminProductController/productCategoryList");
     }
     /**
      * @author 阿杰
@@ -158,10 +237,10 @@ public class ProductController {
      * @return java.lang.String
      * @description 删除分类
      */
-    @RequestMapping("/AdminProductController/deleteProductCategory")
-    public String deleteCategory(Long id) {
+    @RequestMapping("/deleteProductCategory")
+    public ModelAndView deleteCategory(Long id) {
         productService.deleteCategory(id);
-        return "redirect:/AdminProductController/productCategoryList";
+        return new ModelAndView("redirect:/AdminProductController/productCategoryList");
     }
     /**
      * @author 阿杰
@@ -169,11 +248,11 @@ public class ProductController {
      * @return java.lang.String
      * @description 跳转至修改分类页面
      */
-    @RequestMapping("/AdminProductController/toAdminEditProductCategory")
-    public String toEditCategory(Model model, Long id) {
+    @RequestMapping("/toAdminEditProductCategory")
+    public ModelAndView toEditCategory(Model model, Long id) {
         ProductCategory productCategory = productService.findProductCategoryById(id);
         model.addAttribute("productCategory", productCategory);
-        return "admin/adminEditProductCategory";
+        return new ModelAndView("admin/adminEditProductCategory");
     }
     /**
      * @author 阿杰
@@ -181,10 +260,10 @@ public class ProductController {
      * @return java.lang.String
      * @description 修改分类
      */
-    @RequestMapping("/AdminProductController/adminEditProductCategory")
-    public String editCategory(ProductCategory productCategory) {
+    @RequestMapping("/adminEditProductCategory")
+    public ModelAndView editCategory(ProductCategory productCategory) {
         productService.editCategory(productCategory);
-        return "redirect:/AdminProductController/productCategoryList";
+        return new ModelAndView("redirect:/AdminProductController/productCategoryList");
     }
     /**
      * @author 阿杰
@@ -192,12 +271,12 @@ public class ProductController {
      * @return java.lang.String
      * @description 搜索分类
      */
-    @RequestMapping("/AdminProductController/findProductCategory")
-    public  String findCategory(Model model,String category_name){
+    @RequestMapping("/findProductCategory")
+    public  ModelAndView findCategory(Model model,String category_name){
         List<ProductCategory> productCategories = productService.findByProductCategory(category_name);
         model.addAttribute("productCategories",productCategories);
         model.addAttribute("category_name",category_name);
-        return "admin/productCategorylists";
+        return new ModelAndView("admin/productCategorylists");
     }
 
 }
