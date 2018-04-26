@@ -19,4 +19,6 @@ public interface OrdersService {
     Orders findOrdersById(long id);
 
     void delete(long id);
+
+    List<Orders> findOrdersByUserName(String user_name);
 }

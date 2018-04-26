@@ -1,5 +1,6 @@
 package org.wlgzs.xf_mall.dao;
 
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -12,10 +13,12 @@ import java.util.List;
 /**
  * @Auther: Administrator
  * @Date: 2018/4/20 20:04
- * @Description:
+ * @Description:订单类接口
  */
 public interface OrdersRepository extends JpaRepository<Orders, Long>,JpaSpecificationExecutor<Orders> {
-   Orders findById(long id);
+
+    //通过id获得订单信息
+    Orders findById(long id);
 
  /*  @Query(value = "SELECT * FROM orders WHERE product_keywords like %:product_keywords%", nativeQuery = true)
     List<Orders> findByProductKeywords(@Param("product_keywords") String product_keywords);
@@ -23,6 +26,13 @@ public interface OrdersRepository extends JpaRepository<Orders, Long>,JpaSpecifi
     @Query(value = "SELECT * FROM orders WHERE user_name like %:user_name%", nativeQuery = true)
     List<Orders> findByUserName(@Param("user_name") String user_name);
 */
+
+    // 通过订单号查找订单
     @Query(value = "SELECT * FROM orders WHERE order_number like %:order_number%", nativeQuery = true)
     List<Orders> findByOrderNumber(@Param("order_number") String order_number);
+
+    //通过用户名查询订单
+    @Query(value = "SELECT * FROM orders WHERE user_name = ?",nativeQuery = true)
+    List<Orders> findByUserName(@Param("user_name") String user_name);
+
 }

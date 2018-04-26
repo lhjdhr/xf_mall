@@ -1,6 +1,5 @@
 package org.wlgzs.xf_mall.controller.admin;
 
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +26,7 @@ public class OrderController {
         model.addAttribute("orders", orders);
         return "admin/adminOrdersList";
     }
+
     //跳转至修改订单页面
     @RequestMapping("/OrdersController/toChangeOrders")
     public String toEdit(Model model, Long id) {
@@ -64,5 +64,39 @@ public class OrderController {
         Orders order=ordersService.findOrdersById(id);
         model.addAttribute("order", order);
         return "admin/adminOrderInfo";
+    }
+/*
+
+    //下单(添加订单)页面
+    @RequestMapping("/OrdersController/toAddOrder")
+    public String toAdd() {
+        return "admin/adminAddOrder";
+    }
+*/
+
+   /* //下单时自动添加订单
+    @RequestMapping("/OrdersController/AddOrder")
+    public String add(Orders order) {
+        ordersService.save(order);
+        return "redirect:/OrdersController/OrderInfo";
+    }*/
+
+    //通过用户名查询订单
+
+    //后台通过订单号查询订单
+    @RequestMapping("/OrderController/userFindOrder")
+    public String userFindOrders(Model model,String order_number){
+        List<Orders> orders = ordersService.findOrdersByOrderNumber(order_number);
+        model.addAttribute("orders",orders);
+        model.addAttribute("order_number",order_number);
+        return "/userOrdersList";
+    }
+
+    @RequestMapping("/OrderController/findUserOrder")
+    public String UserOrders(Model model,String user_name){
+        List<Orders> orders = ordersService.findOrdersByUserName(user_name);
+        model.addAttribute("orders",orders);
+        model.addAttribute("user_name",user_name);
+        return "/userOrdersList";
     }
 }

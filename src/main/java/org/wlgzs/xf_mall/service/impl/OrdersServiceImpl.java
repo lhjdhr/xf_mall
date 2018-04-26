@@ -47,4 +47,10 @@ public class OrdersServiceImpl implements OrdersService {
     public void delete(long id) {
         ordersRepository.deleteById(id);
     }
+
+    //按照用户名查询订单
+    @Override
+    public List<Orders> findOrdersByUserName(String user_name){
+        return ordersRepository.findByUserName(user_name);
+    }
 }
