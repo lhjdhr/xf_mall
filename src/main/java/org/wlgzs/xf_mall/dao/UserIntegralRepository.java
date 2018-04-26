@@ -12,4 +12,6 @@ import org.wlgzs.xf_mall.entity.UserIntegral;
  */
 public interface UserIntegralRepository extends JpaRepository <UserIntegral,Long>,JpaSpecificationExecutor<UserIntegral> {
     UserIntegral findById(long id);
+
+
 }

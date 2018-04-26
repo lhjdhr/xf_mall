@@ -3,11 +3,11 @@ package org.wlgzs.xf_mall.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.wlgzs.xf_mall.entity.Orders;
 import org.wlgzs.xf_mall.entity.UserIntegral;
 import org.wlgzs.xf_mall.service.UserIntegralService;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Auther: Administrator
@@ -25,8 +25,10 @@ public class IntegralController {
         return "admin/adminEditUserIntegral";
     }
 
-    //后台订单列表
-
-
-
+    @RequestMapping("/AdminUserController/adminUserList")
+    public String list(Model model) {
+        List<UserIntegral> users=userIntegralService.getUserIntegral();
+        model.addAttribute("users", users);
+        return "admin/adminUserList";
+    }
 }

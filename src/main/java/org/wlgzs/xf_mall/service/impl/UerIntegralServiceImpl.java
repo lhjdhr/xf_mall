@@ -8,6 +8,8 @@ import org.wlgzs.xf_mall.dao.UserIntegralRepository;
 import org.wlgzs.xf_mall.entity.UserIntegral;
 import org.wlgzs.xf_mall.service.UserIntegralService;
 
+import java.util.List;
+
 /**
  * @Auther: Administrator
  * @Date: 2018/4/23 09:02
@@ -21,5 +23,10 @@ public class UerIntegralServiceImpl implements UserIntegralService {
     @Override
     public UserIntegral findUserIntegralById(long id){
         return userIntegralRepository.findById(id);
+    }
+
+    @Override
+    public List<UserIntegral> getUserIntegral(){
+        return userIntegralRepository.findAll();
     }
 }
