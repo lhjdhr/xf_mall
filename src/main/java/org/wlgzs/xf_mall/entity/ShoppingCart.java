@@ -18,7 +18,7 @@ public class ShoppingCart {
     private long product_id;//商品id
     private long user_id;//用户id
     @Column(nullable = false,length = 200)
-    private String picture;//图片
+    private String product_picture;//图片
     @Column(nullable = false,length = 50)
     private String product_keywords;//商品关键字
     @Column(nullable = false,length = 50)

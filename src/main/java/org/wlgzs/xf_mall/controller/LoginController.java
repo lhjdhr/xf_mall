@@ -1,5 +1,6 @@
 package org.wlgzs.xf_mall.controller;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +10,8 @@ import org.wlgzs.xf_mall.service.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 /**
  * @author:胡亚星
@@ -25,13 +28,22 @@ public class LoginController {
     UserService userService;
 
     @RequestMapping("/registered")
-    public String register(User user){
-        System.out.println("123");
+    public String register(HttpServletRequest request){
+        Map<String, String[]> properties = request.getParameterMap();
+        User user = new User();
+        try {
+            BeanUtils.populate(user, properties);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        user.setUser_role("普通用户");
         userService.save(user);
         return "redirect:/login";
     }
 
-    /*
+    /**
      * @author 胡亚星
      * @date 2018/4/19 21:20
      * @param

@@ -21,6 +21,6 @@ public interface ProductCategoryRepository extends JpaRepository<ProductCategory
      * @param [category_name]
      * @description 搜索分类名
      */
-    @Query(value = "SELECT * FROM product_category WHERE category_name like %:category_name%", nativeQuery = true)
-    List<ProductCategory> findByCategoryName(@Param("category_name") String category_name);
+    @Query(value = "SELECT o FROM ProductCategory o WHERE o.category_name like %?1%")
+    List<ProductCategory> findByCategoryName(String category_name);
 }
