@@ -34,7 +34,7 @@ public class LoginController {
     @Resource
     UserService userService;
 
-    @RequestMapping("/registered")
+    @RequestMapping("/registeredMail")
     public String register(HttpServletRequest request, Model model, User user, String code) {
         //判断用户是否合法
         if (logUserService.validationUser(request, code)) {
