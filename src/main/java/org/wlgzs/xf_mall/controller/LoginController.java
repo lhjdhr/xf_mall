@@ -17,7 +17,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.Map;
 
@@ -74,13 +73,14 @@ public class LoginController {
         userService.save(user);
         return "redirect:/login";
     }
-        /**
-         * @author 胡亚星
-         * @date 2018/4/19 21:20
-         * @param
-         * @return
-         *用户实现登陆
-         */
+
+    /**
+     * @author 胡亚星
+     * @date 2018/4/19 21:20
+     * @param
+     * @return
+     *用户实现登陆
+     */
     @RequestMapping("/login")
     public String login(HttpServletRequest request, Model model, String user_name, String user_password) {
         User user = logUserService.login(request, user_name, user_password);
