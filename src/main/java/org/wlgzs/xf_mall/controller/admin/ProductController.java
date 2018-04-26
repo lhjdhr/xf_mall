@@ -1,7 +1,6 @@
 package org.wlgzs.xf_mall.controller.admin;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +11,7 @@ import org.wlgzs.xf_mall.entity.Product;
 import org.wlgzs.xf_mall.entity.ProductCategory;
 import org.wlgzs.xf_mall.entity.Result;
 import org.wlgzs.xf_mall.service.ProductService;
-import org.wlgzs.xf_mall.utli.ResultUtil;
+import org.wlgzs.xf_mall.util.ResultUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
