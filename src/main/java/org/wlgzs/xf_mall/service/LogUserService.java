@@ -16,11 +16,14 @@ public interface LogUserService {
     User login(HttpServletRequest request,String user_name, String user_password);
 
     void cancellation(HttpServletRequest request);
+<<<<<<< HEAD
 
     //验证注册用户
     boolean validationUser(HttpServletRequest request,String code);
 
     //发送验证码到邮箱
     void sendEmail(HttpServletRequest request,String user_mail);
+=======
+>>>>>>> 836efe5debc8e6c5a5c635bef35eceb6fcca2b61
 
 }

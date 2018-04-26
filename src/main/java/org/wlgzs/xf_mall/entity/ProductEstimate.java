@@ -30,5 +30,6 @@ public class ProductEstimate {
     private String estimate_content;   //评价内容
     @Column(nullable = false,length = 200)
     private String estimate_img;   //买家秀
+    private long order_id;
 }
 

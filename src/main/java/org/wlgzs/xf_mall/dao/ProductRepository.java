@@ -22,6 +22,6 @@ public interface ProductRepository extends JpaRepository<Product, Long>,JpaSpeci
      * @param [product_keywords]
      * @description 搜索商品关键字
      */
-    @Query(value = "SELECT * FROM product WHERE product_keywords like %:product_keywords%", nativeQuery = true)
-    List<Product> findByProductKeywords(@Param("product_keywords") String product_keywords);
+    @Query(value = "SELECT o FROM Product o WHERE o.product_keywords like %?1%")
+    List<Product> findByProductKeywords(String product_keywords);
 }

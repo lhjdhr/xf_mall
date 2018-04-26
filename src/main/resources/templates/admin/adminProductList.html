@@ -43,8 +43,8 @@
             <td th:text="${product.product_keywords}"></td>
             <td th:text="${product.product_picture}"></td>
             <td th:text="${product.product_specification}"></td>
-            <td><a th:href="@{/AdminProductController/toAdminEditProduct(id=${product.product_id})}">edit</a></td>
-            <td><a th:href="@{/AdminProductController/adminDeleteProduct(id=${product.product_id})}">delete</a></td>
+            <td><a th:href="@{/AdminProductController/toAdminEditProduct(product_id=${product.product_id})}">edit</a></td>
+            <td><a th:href="@{/AdminProductController/adminDeleteProduct(product_id=${product.product_id})}">delete</a></td>
         </tr>
         </tbody>
     </table>

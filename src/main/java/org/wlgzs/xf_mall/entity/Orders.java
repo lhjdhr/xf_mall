@@ -43,13 +43,13 @@ public class Orders {
     private int product_needPoints;//需要多少积分
     @Column(nullable = false,length = 20)
     private String order_number;//订单号
-    @Column(nullable = false,length = 20)
+    @Column(length = 20)
     private String order_expressNumber;//订单快递号
-    @Column(nullable = false,length = 10)
-    private String order_status;//订单状态
+    @Column(nullable = false)
+    private String order_status = "未发货";//订单状态
     @Column(nullable = false,length = 30)
     private String address_name;//收货人
-    @Column(nullable = false,length = 50)
+    @Column(length = 50)
     private String order_deliveryAddress;//发货地址
     @Column(nullable = false,length = 50)
     private String address_shipping;//收货地址
@@ -62,7 +62,7 @@ public class Orders {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date order_dealTime;//成交时间
     @Column(nullable = false,length = 10)
-    private String order_methodOfPurchase;//购买方式
+    private String order_methodOfPurchase = "付款购买";//购买方式
     @Column(nullable = false)
     private int order_quantity;//购买数量
 }

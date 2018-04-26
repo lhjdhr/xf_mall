@@ -1,5 +1,6 @@
 package org.wlgzs.xf_mall.controller;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,10 +12,15 @@ import org.wlgzs.xf_mall.service.UserService;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+<<<<<<< HEAD
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+=======
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
+>>>>>>> 836efe5debc8e6c5a5c635bef35eceb6fcca2b61
 
 /**
  * @author:胡亚星
@@ -31,6 +37,7 @@ public class LoginController {
     UserService userService;
 
     @RequestMapping("/registered")
+<<<<<<< HEAD
     public String register(HttpServletRequest request, Model model, User user, String code) {
         //判断用户是否合法
         if (logUserService.validationUser(request, code)) {
@@ -52,9 +59,24 @@ public class LoginController {
     @RequestMapping("/toLogin")
     public String toLogin() {
         return "login";
+=======
+    public String register(HttpServletRequest request){
+        Map<String, String[]> properties = request.getParameterMap();
+        User user = new User();
+        try {
+            BeanUtils.populate(user, properties);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        }
+        user.setUser_role("普通用户");
+        userService.save(user);
+        return "redirect:/login";
+>>>>>>> 836efe5debc8e6c5a5c635bef35eceb6fcca2b61
     }
 
-    /*
+    /**
      * @author 胡亚星
      * @date 2018/4/19 21:20
      * @param
