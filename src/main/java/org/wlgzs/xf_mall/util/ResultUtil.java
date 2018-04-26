@@ -1,4 +1,4 @@
-package org.wlgzs.xf_mall.utli;
+package org.wlgzs.xf_mall.util;
 
 /**
  * @Auther: 阿杰

@@ -85,6 +85,9 @@
                 </tr>
                 <tbody th:each="shoppingCart : ${shoppingCarts}">
                 <tr class="active">
+                    <td>
+                        <input type="checkbox">
+                    </td>
                     <td th:width="158">
                         <input type="hidden" name="id" value="22">
                         <a th:href="@{/ProductListController/toProduct(product_id=${shoppingCart.product_id})}">

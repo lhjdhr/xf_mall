@@ -15,6 +15,7 @@ import java.util.List;
  * @Description: 后台用户增删改查控制层
  */
 @Controller
+@RequestMapping("AdminUserController")
 public class UserController {
     @Resource
     UserService userService;
@@ -29,7 +30,7 @@ public class UserController {
      * @return java.lang.String
      * @description 后台遍历用户
      */
-    @RequestMapping("/AdminUserController/adminUserList")
+    @RequestMapping("/adminUserList")
     public String list(Model model) {
         List<User> users=userService.getUserList();
         model.addAttribute("users", users);
@@ -41,7 +42,7 @@ public class UserController {
      * @return java.lang.String
      * @description 搜索用户
      */
-    @RequestMapping("/AdminUserController/adminFindUser")
+    @RequestMapping("/adminFindUser")
     public  String findUserName(Model model,String user_name){
         List<User> users = userService.findByUserName(user_name);
         model.addAttribute("users",users);
@@ -53,7 +54,7 @@ public class UserController {
      * @return java.lang.String
      * @description 跳转至增加用户页面
      */
-    @RequestMapping("/AdminUserController/toAdminAddUser")
+    @RequestMapping("/toAdminAddUser")
     public String toAdd() {
         return "admin/adminAddUser";
     }
@@ -63,7 +64,7 @@ public class UserController {
      * @return java.lang.String
      * @description 后台增加用户
      */
-    @RequestMapping("/AdminUserController/adminAddUser")
+    @RequestMapping("/adminAddUser")
     public String add(User user) {
         userService.save(user);
         return "redirect:/AdminUserController/adminUserList";
@@ -75,7 +76,7 @@ public class UserController {
      * @return java.lang.String
      * @description 跳转至修改用户页面
      */
-    @RequestMapping("/AdminUserController/toAdminEditUser")
+    @RequestMapping("/toAdminEditUser")
     public String toEdit(Model model, Long id) {
         User user=userService.findUserById(id);
         model.addAttribute("user", user);
@@ -87,7 +88,7 @@ public class UserController {
      * @return java.lang.String
      * @description 后台修改用户
      */
-    @RequestMapping("/AdminUserController/adminEditUser")
+    @RequestMapping("/adminEditUser")
     public String edit(User user) {
         userService.edit(user);
         return "redirect:/AdminUserController/adminUserList";
@@ -98,7 +99,7 @@ public class UserController {
      * @return java.lang.String
      * @description 后台删除用户
      */
-    @RequestMapping("/AdminUserController/adminDeleteUser")
+    @RequestMapping("/adminDeleteUser")
     public String delete(Long id) {
         userService.delete(id);
         return "redirect:/AdminUserController/adminUserList";
