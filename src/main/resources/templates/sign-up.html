@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新飞官方网上商城</title>
+    <link rel="stylesheet" th:href="@{/css/sign-up.css}"></link>
+    <link rel="shortcut icon" th:href="@{images/xflogo.ico}" type="image/x-icon"/>
+    <!--<link rel="stylesheet" th:href="@{font/css/font-awesome.min.css}">-->
+    <script th:src="@{js/jqurey.js}"></script>
+</head>
+<body>
+<div class="contenter">
+    <div class="header">
+        <img th:src="@{images/logo.png}" class="xflogo">
+        <p class="register">用户注册</p>
+    </div>
+    <div class="steps">
+        <ul>
+            <li class="li1">
+                <div class="serial-1">1.</div>
+                <span class="spn1">设置用户名</span>
+            </li>
+            <li class="li2">
+                <div class="serial-2">2.</div>
+                <span class="spn2">填写账户信息</span>
+            </li>
+            <li class="li3">
+                <div class="serial-3">3.</div>
+                <span class="spn3">
+                    注册成功
+                </span>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <!--设置用户名-->
+        <form th:action="@{toRegistered}" method="post" class="form-list">
+            <div class="list">
+                <label>邮箱号：</label><input type="text" class="ipt" name="user_mail" placeholder="请输入你的邮箱号" id="user_mail"
+                                          th:onclick="'javascript:openBox()'">
+            </div>
+            <div class="list" style="display: inline-block">
+                <label>验证码：</label><input type="text" class="ipt" placeholder="请输入验证码" style="width: 140px;"
+                                          id="user_code" name="user_code">
+                <p id="error" style="margin-left: 60px">1111111111</p>
+            </div>
+            <!--<div id="getcode" class="verification-code">获取验证码</div>-->
+            <button>获取验证码</button>
+            <a th:href="a" th:onclick="'javascript:tab()'">
+                <div class="affirm">确认</div>
+            </a>
+        </form>
+        <!--填写账户信息-->
+        <form th:action="@{toRegistered}" method="post" class="form-list2">
+            <div class="list">
+                <label>用户名：</label><input type="text" name="user_name" class="ipt" placeholder="请输入你的用户名"
+                                          th:onchange="'javascript:test2()'" id="text3">
+            </div>
+            <div class="list">
+                <label>密&nbsp&nbsp&nbsp&nbsp码：</label><input type="password" name="user_password" class="ipt"
+                                                             placeholder="请输入密码" th:onchange="'javascript:test3()'"
+                                                             style="width: 140px;" id="text4">
+            </div>
+            <div class="list">
+                <label>确&nbsp&nbsp&nbsp&nbsp认：</label><input type="password" class="ipt" placeholder="请再次输入密码"
+                                                             style="width: 140px;" id="text5">
+            </div>
+
+            <a th:href="a" th:onclick="'javascript:tab2()'">
+                <div class="affirm">确认</div>
+            </a>
+        </form>
+        <form th:action="@{toRegistered}" method="post" class="form-list3">
+            <div class="success">
+                <img th:src="@{images/correct.jpg}" class="size">
+                <p style="display: inline; margin-left: 20px;color: red;">亲，恭喜你注册成功！</p>
+                <div class="success-sign">
+                    <a th:href="a"><span class="success-signs">登录</span></a>
+                    <a th:href="a"><span class="success-signs">暂不登录</span></a>
+                </div>
+            </div>
+        </form>
+    </div>
+    <footer>
+        <ul>
+            <li class="listyle"><a href="#">企业文化</a></li>
+            |
+            <li class="listyle"><a href="3">品质科技</a></li>
+            |
+            <li class="listyle"><a href="#">新闻中心</a></li>
+            |
+            <li class="listyle"><a href="#">招贤纳士</a></li>
+            |
+            <li class="listyle"><a href="#">企业文化</a></li>
+            |
+            <li class="listyle"><a href="3">品质科技</a></li>
+            |
+            <li class="listyle"><a href="#">新闻中心</a></li>
+            |
+            <li class="listyle"><a href="#">招贤纳士</a></li>
+            |
+            <li class="listyle"><a href="#">企业文化</a></li>
+            |
+            <li class="listyle"><a href="3">品质科技</a></li>
+            |
+            <li class="listyle"><a href="#">新闻中心</a></li>
+            |
+            <li class="listyle"><a href="#">招贤纳士</a></li>
+            |
+            <li class="listyle"><a href="#">企业文化</a></li>
+            |
+            <li class="listyle"><a href="3">品质科技</a></li>
+            |
+            <li class="listyle"><a href="#">新闻中心</a></li>
+            <br>
+            <li class="listyle"><a href="#">招贤纳士</a></li>
+            |
+            <li class="listyle"><a href="#">企业文化</a></li>
+            |
+            <li class="listyle"><a href="3">品质科技</a></li>
+            |
+            <li class="listyle"><a href="#">新闻中心</a></li>
+            |
+            <li class="listyle"><a href="#">招贤纳士</a></li>
+            |
+            <li class="listyle"><a href="#">企业文化</a></li>
+            |
+            <li class="listyle"><a href="3">品质科技</a></li>
+            |
+            <li class="listyle"><a href="#">新闻中心</a></li>
+            |
+            <li class="listyle"><a href="#">招贤纳士</a></li>
+            |
+            <li class="listyle"><a href="#">企业文化</a></li>
+            |
+            <li class="listyle"><a href="3">品质科技</a></li>
+            |
+            <li class="listyle"><a href="#">新闻中心</a></li>
+            |
+            <li class="listyle"><a href="#">招贤纳士</a></li>
+            |
+            <li class="listyle"><a href="#">企业文化</a></li>
+            |
+            <li class="listyle"><a href="3">品质科技</a></li>
+            |
+            <li class="listyle"><a href="#">新闻中心</a></li>
+            |
+            <li class="listyle"><a href="#">招贤纳士</a></li>
+            |
+            <li class="listyle"><a href="#">企业文化</a></li>
+            |
+            <li class="listyle"><a href="3">品质科技</a></li>
+            |
+            <li class="listyle"><a href="#">新闻中心</a></li>
+            |
+            <li class="listyle"><a href="#">招贤纳士</a></li>
+            |
+            <li class="listyle"><a href="#">企业文化</a></li>
+            |
+            <li class="listyle"><a href="3">品质科技</a></li>
+            |
+            <li class="listyle"><a href="#">新闻中心</a></li>
+            |
+            <li class="listyle"><a href="#">招贤纳士</a></li>
+            |<br>
+            <p style="display: inline;color: #6C6C6C">网络文化经营许可证：<a>文网文[2010]40号</a></p>&nbsp&nbsp<p
+                style="display: inline;color: #6C6C6C">信息网络传播视听节目许可证：1109364号</p>
+        </ul>
+    </footer>
+
+</div>
+
+
+<script th:src="@{js/sign-up.js}"></script>
+</body>
+</html>

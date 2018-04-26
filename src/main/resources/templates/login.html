@@ -3,8 +3,8 @@
 <head>
 <title>大气简洁后台登录模板下载</title> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<script type="text/javascript" th:src="@{css/jquery-1.9.0.min.js}"></script>
-<script type="text/javascript" th:src="@{css/login.js}"></script>
+<script type="text/javascript" th:src="@{js/jquery-1.9.0.min.js}"></script>
+<script type="text/javascript" th:src="@{js/login.js}"></script>
 <link rel="stylesheet" th:href="@{/css/login2.css}"></link>
 </head>
 <body>
@@ -16,7 +16,7 @@
         <div class="switch" id="switch"><a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">快速登录</a>
 			<a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">快速注册</a><div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
         </div>
-    </div>    
+    </div>
   
     
     <div class="web_qr_login" id="web_qr_login" style="display: block; height: 235px;">    
@@ -50,49 +50,49 @@
                     <input type="submit" value="登 录" style="width:150px;" class="button_blue"/></div>
               </form>
            </div>
-           
+
             	</div>
-               
+
             </div>
             <!--登录end-->
   </div>
 
   <!--注册-->
     <div class="qlogin" id="qlogin" style="display: none; ">
-   
+
     <div class="web_login">
-        <form name="form2" id="regUser" accept-charset="utf-8"  th:action="@{/registered}" method="post">
+        <form name="form2" id="regUser" accept-charset="utf-8"  th:action="@{/sendEmail}" method="post">
 	      <input type="hidden" name="to" value="reg"/>
 		      		       <input type="hidden" name="did" value="0"/>
             <ul class="reg_form" id="reg-ul">
         		<div id="userCue" class="cue">快速注册请注意格式</div>
                 <li>
-                	
+
                     <label for="user_name"  class="input-tips2">用户名：</label>
                     <div class="inputOuter2">
                         <input type="text" id="user_name" name="user_name" maxlength="16" class="inputstyle2"/>
                     </div>
                 </li>
-                
+
                 <li>
                 <label for="user_password" class="input-tips2">密码：</label>
                     <div class="inputOuter2">
                         <input type="password" id="user_password"  name="user_password" maxlength="16" class="inputstyle2"/>
                     </div>
-                    
+
                 </li>
                 <li>
                 <label for="passwd2" class="input-tips2">确认密码：</label>
                     <div class="inputOuter2">
                         <input type="password" id="passwd2" maxlength="16" class="inputstyle2" />
                     </div>
-                    
+
                 </li>
-                
+
                 <li>
                  <label for="user_mail" class="input-tips2">邮箱：</label>
                     <div class="inputOuter2">
-                        <input type="text" id="user_mail" name="user_mail" maxlength="10" class="inputstyle2"/>
+                        <input type="text" id="user_mail" name="user_mail" maxlength="20" class="inputstyle2"/>
                     </div>
                 </li>
                 <li>
@@ -108,18 +108,18 @@
                     </div>
                 </li>
 
-                
+
                 <li>
                     <div class="inputArea">
                         <input type="submit" id="reg"  style="margin-top:10px;margin-left:85px;" class="button_blue" value="同意协议并注册"/>
                         <a href="#" class="zcxy" target="_blank">注册协议</a>
                     </div>
-                    
+
                 </li><div class="cl"></div>
             </ul>
         </form>
-           
-    
+
+
     </div>
    
     

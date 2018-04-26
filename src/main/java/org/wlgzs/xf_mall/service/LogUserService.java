@@ -13,8 +13,14 @@ import javax.servlet.http.HttpServletRequest;
  **/
 public interface LogUserService {
 
-    public User login(HttpServletRequest request,String user_name, String user_password);
+    User login(HttpServletRequest request,String user_name, String user_password);
 
-    public void cancellation(HttpServletRequest request);
+    void cancellation(HttpServletRequest request);
+
+    //验证注册用户
+    boolean validationUser(HttpServletRequest request,String code);
+
+    //发送验证码到邮箱
+    void sendEmail(HttpServletRequest request,String user_mail);
 
 }
