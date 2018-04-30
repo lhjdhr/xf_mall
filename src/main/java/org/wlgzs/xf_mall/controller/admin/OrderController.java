@@ -46,7 +46,7 @@ public class OrderController {
     }
 
     //后台修改订单信息
-    @RequestMapping("/changeProductOrders")
+    @RequestMapping("/changeProductOrder")
     public String edit(Orders order) {
         ordersService.edit(order);
         return "redirect:/OrderController/allOrders";
