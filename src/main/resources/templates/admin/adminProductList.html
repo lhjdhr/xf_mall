@@ -34,7 +34,7 @@
         </thead>
         <tbody>
         <tr  th:each="product : ${products}">
-            <th scope="row" th:text="${product.product_id}"></th>
+            <th scope="row" th:text="${product.productId}"></th>
             <td th:text="${product.product_inventory}"></td>
             <td th:text="${product.product_activity}"></td>
             <td th:text="${product.product_category}"></td>
@@ -43,8 +43,8 @@
             <td th:text="${product.product_keywords}"></td>
             <td th:text="${product.product_picture}"></td>
             <td th:text="${product.product_specification}"></td>
-            <td><a th:href="@{/AdminProductController/toAdminEditProduct(product_id=${product.product_id})}">edit</a></td>
-            <td><a th:href="@{/AdminProductController/adminDeleteProduct(product_id=${product.product_id})}">delete</a></td>
+            <td><a th:href="@{/AdminProductController/toAdminEditProduct(product_id=${product.productId})}">edit</a></td>
+            <td><a th:href="@{/AdminProductController/adminDeleteProduct(product_id=${product.productId})}">delete</a></td>
         </tr>
         </tbody>
     </table>

@@ -80,7 +80,7 @@
         </div>
 
         <div class="col-md-2" th:each="product : ${products}">
-            <a th:href="@{/ProductListController/toProduct(product_id=${product.product_id})}">
+            <a th:href="@{/ProductListController/toProduct(productId=${product.productId})}">
                 <img th:src="${product.product_picture}"
                                              th:width="170" height="170" style="display: inline-block;">
             </a>

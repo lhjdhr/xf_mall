@@ -1,5 +1,8 @@
 package org.wlgzs.xf_mall.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.wlgzs.xf_mall.entity.User ;
 
 import java.util.List;
@@ -11,16 +14,16 @@ import java.util.List;
  */
 public interface UserService {
 
-    List<User> getUserList();
-
-    User findUserById(long id);
+    User findUserById(long userId);
 
     void save(User user);
 
     void edit(User user);
 
-    void delete(long id);
+    void delete(long userId);
 
-    List<User> findByUserName(String user_name);
+    void save(List<User> users);
+
+    Page<User> findUserPage(String user_name,int pa,int limit);
 
 }

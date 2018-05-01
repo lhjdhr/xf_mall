@@ -1,7 +1,6 @@
 package org.wlgzs.xf_mall.service.impl;
 
-import org.attoparser.ParsingCDATASectionMarkupUtil;
-import org.hibernate.validator.constraints.SafeHtml;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.wlgzs.xf_mall.dao.UserIntegralRepository;
