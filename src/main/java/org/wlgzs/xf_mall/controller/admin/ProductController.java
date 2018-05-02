@@ -1,7 +1,6 @@
 package org.wlgzs.xf_mall.controller.admin;
 
-import org.apache.commons.beanutils.BeanUtils;
-import org.springframework.stereotype.Controller;
+import org.springframework.data.domain.Page;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,17 +11,13 @@ import org.wlgzs.xf_mall.entity.Product;
 import org.wlgzs.xf_mall.entity.ProductCategory;
 import org.wlgzs.xf_mall.entity.Result;
 import org.wlgzs.xf_mall.service.ProductService;
-import org.wlgzs.xf_mall.utli.ResultUtil;
+import org.wlgzs.xf_mall.util.ResultUtil;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+
 
 /**
  * @Auther: 阿杰
@@ -41,9 +36,24 @@ public class ProductController {
      * @description 后台商品列表
      */
     @RequestMapping(value = "/adminProductList")
-    public ModelAndView list(Model model) {
-        List<Product> products = productService.getProductList();
-        model.addAttribute("products",products);
+    public ModelAndView list(Model model, @RequestParam(value = "page",defaultValue = "0") int page,
+                             @RequestParam(value = "limit",defaultValue = "10") int limit) {
+        String product_keywords ="";
+        Page pages =  productService.getProductListPage(product_keywords,page,limit);
+        model.addAttribute("TotalPages", pages.getTotalPages());//查询的页数
+        model.addAttribute("TotalElements", pages.getTotalElements());//查询的总记录数
+        model.addAttribute("Number", pages.getNumber());//查询的当前第几页
+        List<Product> products = pages.getContent();
+        String img;
+        for(int i = 0; i < products.size(); i++) {
+            if (products.get(i).getProduct_picture().contains(",")){
+                img = products.get(i).getProduct_picture();
+                img = img.substring(0,img.indexOf(","));
+                products.get(i).setProduct_picture(img);
+            }
+        }
+        model.addAttribute("products", products);//查询的当前页的集合
+        model.addAttribute("NumberOfElements", pages.getNumberOfElements());//查询的当前页的记录数
         return new ModelAndView("admin/adminProductList");
     }
     /**
@@ -53,9 +63,24 @@ public class ProductController {
      * @description 搜索商品
      */
     @RequestMapping("/adminFindProduct")
-    public  ModelAndView findProduct(Model model,String product_keywords){
-        List<Product> products = productService.findByProductKeywords(product_keywords);
-        model.addAttribute("products",products);
+    public  ModelAndView findProduct(Model model, String product_keywords, @RequestParam(value = "page",defaultValue = "0") int page,
+                                     @RequestParam(value = "limit",defaultValue = "10") int limit){
+        Page pages =  productService.getProductListPage(product_keywords,page,limit);
+        model.addAttribute("TotalPages", pages.getTotalPages());//查询的页数
+        model.addAttribute("TotalElements", pages.getTotalElements());//查询的总记录数
+        model.addAttribute("Number", pages.getNumber());//查询的当前第几页
+        List<Product> products = pages.getContent();
+        String img;
+        for(int i = 0; i < products.size(); i++) {
+            if (products.get(i).getProduct_picture().contains(",")){
+                img = products.get(i).getProduct_picture();
+                img = img.substring(0,img.indexOf(","));
+                System.out.println("  ");
+                products.get(i).setProduct_picture(img);
+            }
+        }
+        model.addAttribute("products", products);//查询的当前页的集合
+        model.addAttribute("NumberOfElements", pages.getNumberOfElements());//查询的当前页的记录数
         model.addAttribute("product_keywords",product_keywords);
         return new ModelAndView("admin/adminProductList");
     }
@@ -75,21 +100,8 @@ public class ProductController {
      * @description 富文本图片上传
      */
     @RequestMapping("/upload")
-    public Result uploadImg(MultipartFile myFileName, HttpSession session, HttpServletRequest request) throws IllegalStateException, IOException {
-        String realName = "";
-        if (myFileName != null) {
-            String fileName = myFileName.getOriginalFilename();
-            String fileNameExtension = fileName.substring(fileName.indexOf("."), fileName.length());
-
-            // 生成实际存储的真实文件名
-            realName = UUID.randomUUID().toString() + fileNameExtension;
-
-            // "/upload"是你自己定义的上传目录
-            String realPath = session.getServletContext().getRealPath("/upload");
-            File uploadFile = new File(realPath, realName);
-            myFileName.transferTo(uploadFile);
-        }
-        String [] str = {request.getContextPath() + "/upload/" + realName};
+    public Result uploadImg(MultipartFile myFileName, HttpSession session, HttpServletRequest request) {
+        String[] str = productService.uploadImg(myFileName,session,request);
         return ResultUtil.success(str);
     }
     /**
@@ -100,46 +112,8 @@ public class ProductController {
      */
     @RequestMapping("/adminAddProduct")
     public ModelAndView add(String product_details, @RequestParam("file") MultipartFile[] myFileNames, HttpSession session,
-                            Model model, HttpServletRequest request) throws IOException {
-        String realName = "";
-        String[] str = new String[myFileNames.length];
-        for (int i = 0; i < myFileNames.length; i++) {
-            if (!myFileNames[i].getOriginalFilename().equals("")) {
-                String fileName = myFileNames[i].getOriginalFilename();
-                String fileNameExtension = fileName.substring(fileName.indexOf("."), fileName.length());
-
-                // 生成实际存储的真实文件名
-                realName = UUID.randomUUID().toString() + fileNameExtension;
-
-                // "/upload"是你自己定义的上传目录
-                String realPath = session.getServletContext().getRealPath("/upload");
-                File uploadFile = new File(realPath, realName);
-                myFileNames[i].transferTo(uploadFile);
-            }
-            if(!myFileNames[i].getOriginalFilename().equals("")){
-                str[i] = request.getContextPath() + "/upload/" + realName;
-            }
-        }
-        StringBuffer stringBuffer = new StringBuffer();
-        for (int i = 0; i < str.length; i++) {
-            if(!myFileNames[i].getOriginalFilename().equals("")) {
-                stringBuffer.append(str[i] + ",");
-            }
-        }
-        String product_picture = stringBuffer.substring(0,stringBuffer.length()-1);
-
-        Map<String, String[]> properties = request.getParameterMap();
-        Product product = new Product();
-        try {
-            BeanUtils.populate(product, properties);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
-        product.setProduct_details(product_details);
-        product.setProduct_picture(product_picture);
-        productService.save(product);
+                            Model model, HttpServletRequest request){
+        productService.saveProduct(product_details,myFileNames,session,request);
         model.addAttribute("product_details",product_details);
         return new ModelAndView("redirect:/AdminProductController/adminProductList");
     }
@@ -184,9 +158,15 @@ public class ProductController {
      * @description 遍历所有分类
      */
     @RequestMapping("/productCategoryList")
-    public ModelAndView category(Model model){
-        List<ProductCategory> productCategories = productService.getProductCategoryList();
-        model.addAttribute("productCategories",productCategories);
+    public ModelAndView category(Model model, @RequestParam(value = "page",defaultValue = "0") int page,
+                                 @RequestParam(value = "limit",defaultValue = "10") int limit){
+        String category_name ="";
+        Page pages =  productService.getProductCategoryList(category_name,page,limit);
+        model.addAttribute("TotalPages", pages.getTotalPages());//查询的页数
+        model.addAttribute("TotalElements", pages.getTotalElements());//查询的总记录数
+        model.addAttribute("Number", pages.getNumber());//查询的当前第几页
+        model.addAttribute("productCategories", pages.getContent());//查询的当前页的集合
+        model.addAttribute("NumberOfElements", pages.getNumberOfElements());//查询的当前页的记录数
         return new ModelAndView("admin/productCategorylists");
     }
     /**
@@ -272,9 +252,14 @@ public class ProductController {
      * @description 搜索分类
      */
     @RequestMapping("/findProductCategory")
-    public  ModelAndView findCategory(Model model,String category_name){
-        List<ProductCategory> productCategories = productService.findByProductCategory(category_name);
-        model.addAttribute("productCategories",productCategories);
+    public  ModelAndView findCategory(Model model,String category_name, @RequestParam(value = "page",defaultValue = "0") int page,
+                                      @RequestParam(value = "limit",defaultValue = "10") int limit){
+        Page pages =  productService.getProductCategoryList(category_name,page,limit);
+        model.addAttribute("TotalPages", pages.getTotalPages());//查询的页数
+        model.addAttribute("TotalElements", pages.getTotalElements());//查询的总记录数
+        model.addAttribute("Number", pages.getNumber());//查询的当前第几页
+        model.addAttribute("productCategories", pages.getContent());//查询的当前页的集合
+        model.addAttribute("NumberOfElements", pages.getNumberOfElements());//查询的当前页的记录数
         model.addAttribute("category_name",category_name);
         return new ModelAndView("admin/productCategorylists");
     }

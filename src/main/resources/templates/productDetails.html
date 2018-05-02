@@ -100,7 +100,7 @@
                     促销: <a target="_blank" title="限时抢购 (2014-07-30 ~ 2015-01-01)"
                            style="background-color: #f07373;">限时抢购</a>
                 </div>-->
-                <form th:action="@{/ProductListController/addShoppingProduct(product_id=*{product_id},user_id=46)}" method="post">
+                <form th:action="@{/ProductListController/addShoppingProduct(productId=*{productId},user_id=46)}" method="post">
                     <div th:width="330px" style="padding: 10px; border: 1px solid #e7dbb1; margin: 15px 0 10px 0; background-color: #fffee6;">
                         <div style="margin: 5px 0 10px 0;">白色</div>
                         <div style="border-bottom: 1px solid #faeac7; margin-top: 20px; padding-left: 10px;">
@@ -113,7 +113,7 @@
                         </div>
                     </div>
                 </form>
-                <form th:action="@{/ProductListController/addCollectionProduct(product_id=*{product_id},user_id=46)}" method="post">
+                <form th:action="@{/ProductListController/addCollectionProduct(productId=*{productId},user_id=46)}" method="post">
                     <input th:width="127px" style="height: 36px;" value="收藏商品" type="submit">
                 </form>
             </div>

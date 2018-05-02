@@ -18,7 +18,7 @@ import javax.persistence.Id;
 public class User {
     @Id
     @GeneratedValue()
-    private long user_id;//用户id
+    private long userId;//用户id
     @Column(length = 20)
     private String user_avatar;//用户头像
     @Column(nullable = false,length = 30)

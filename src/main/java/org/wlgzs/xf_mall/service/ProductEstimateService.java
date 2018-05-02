@@ -5,7 +5,7 @@ import org.wlgzs.xf_mall.entity.ProductEstimate;
 /**
  * @Auther: Administrator
  * @Date: 2018/4/23 13:18
- * @Description:
+ * @Description: 商品评价
  */
 public interface ProductEstimateService {
     ProductEstimate findProductEstimateById(long id);

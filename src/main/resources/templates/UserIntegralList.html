@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>用户积分列明细</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+</head>
+<body class="container">
+<br/>
+<h1>用户积分明细</h1>
+<br/><br/>
+<div class="with:80%">
+    <!--<form th:action="@{/OrderController/userFindOrder}"  method="post">
+        <div>
+            <input type="text" id="order_number" name="order_number" th:value="*{order_number}" placeholder="订单号" >
+            <input type="submit" value="搜索" class="btn btn-info" />
+        </div>
+    </form>-->
+        <a th:href="@{/IntegralController/integralList(user_id = 1)}" class="btn btn-info">积分明细</a>
+        <a th:href="@{/IntegralController/UserIntegralIncome(user_id = 1)}" class="btn btn-info">积分收入明细</a>
+        <a th:href="@{/IntegralController/UserIntegralExpend(user_id = 1)}" class="btn btn-info">积分支出明细</a>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>商品图片</th>
+            <th>商品关键字</th>
+            <th>积分变化</th>
+            <th>修改</th>
+            <th>删除</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr  th:each="integral : ${integralLists}">
+            <th scope="row" th:text="${integral.userIntegral_id}"></th>
+            <td th:text="${integral.product_picture}"></td>
+            <td th:text="${integral.product_keyword}"></td>
+            <td th:text="${integral.userIntegral_vary}"></td>
+            <td><a th:href="@{/OrderController/orderDetails(userIntegral_id=${integral.userIntegral_id},user_id = ${integral.user_id})}">详情</a></td>
+            <td><a th:href="@{/UserIntegralController/deleteUserIntegral(userIntegral_id=${integral.userIntegral_id},user_id = ${integral.user_id})}">删除</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

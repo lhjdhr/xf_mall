@@ -28,12 +28,12 @@
         </thead>
         <tbody>
         <tr  th:each="productCategory : ${productCategories}">
-            <th scope="row" th:text="${productCategory.category_id}"></th>
+            <th scope="row" th:text="${productCategory.categoryId}"></th>
             <td th:text="${productCategory.category_name}"></td>
             <td th:if="${productCategory.parent_name=='0'}">一级分类</td>
             <td th:if="${productCategory.parent_name!='0'}" th:text="${productCategory.parent_name}"></td>
-            <td><a th:href="@{/AdminProductController/toAdminEditProductCategory(id=${productCategory.category_id})}">edit</a></td>
-            <td><a th:href="@{/AdminProductController/deleteProductCategory(id=${productCategory.category_id})}">delete</a></td>
+            <td><a th:href="@{/AdminProductController/toAdminEditProductCategory(id=${productCategory.categoryId})}">edit</a></td>
+            <td><a th:href="@{/AdminProductController/deleteProductCategory(id=${productCategory.categoryId})}">delete</a></td>
         </tr>
         </tbody>
     </table>

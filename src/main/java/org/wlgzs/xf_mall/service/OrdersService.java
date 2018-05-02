@@ -5,9 +5,9 @@ import org.wlgzs.xf_mall.entity.Orders;
 import java.util.List;
 
 /**
- * @Auther: Administrator
+ * @Auther: 李晓珊
  * @Date: 2018/4/20 20:52
- * @Description:
+ * @Description: 订单管理
  */
 public interface OrdersService {
     List<Orders> getOrdersList();

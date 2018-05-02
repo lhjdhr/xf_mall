@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.wlgzs.xf_mall.entity.ProductEstimate;
 
 /**
- * @Auther: Administrator
+ * @Auther: 李晓珊
  * @Date: 2018/4/23 13:14
  * @Description:
  */

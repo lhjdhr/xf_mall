@@ -15,16 +15,10 @@ import java.util.List;
  * @description:
  **/
 @Controller
+@RequestMapping("SearchShieldController")
 public class SearchShieldController {
     @Resource
     SearchShieldService searchShieldService;
-
-    @RequestMapping("/AdminProductController/toChangeProductSensitive")
-    public String toChangeProductSensitive(Model model, Long id){
-        SearchShield searchShield = searchShieldService.findSearchShieldById(id);
-        model.addAttribute("searchShield",searchShield);
-        return "admin/changeProductSensitive";
-    }
 
     /**     
      * @author 胡亚星
@@ -33,7 +27,7 @@ public class SearchShieldController {
      * @return   
      *@Description:后台遍历敏感词汇
      */  
-    @RequestMapping("/AdminProductController/toProductSensitive")
+    @RequestMapping("/toProductSensitive")
     public String list(Model model) {
         List<SearchShield> searchShields = searchShieldService.getSearchShieldList();
         model.addAttribute("searchShields", searchShields);
@@ -47,7 +41,7 @@ public class SearchShieldController {
      * @return   
      *@Description:后台添加敏感词汇
      */  
-    @RequestMapping("/AdminProductController/addProductSensitive")
+    @RequestMapping("/addProductSensitive")
     public String addSearchShield(SearchShield searchShield){
         searchShieldService.save(searchShield);
         System.out.println("添加成功");
@@ -61,8 +55,8 @@ public class SearchShieldController {
      * @return
      *@Description:后台删除敏感词汇
      */
-    @RequestMapping("/AdminProductController/deleteProductSensitive")
-    public String deleceSearchShield(Long id){
+    @RequestMapping("/deleteProductSensitive")
+    public String deleteSearchShield(Long id){
         searchShieldService.delete(id);
         return "redirect:/AdminProductController/toProductSensitive";
     }
@@ -74,7 +68,7 @@ public class SearchShieldController {
      * @return
      *@Description:后台搜索敏感词汇
      */
-    @RequestMapping("/AdminProductController/findProductSensitive")
+    @RequestMapping("/findProductSensitive")
     public String findSearchShield(Model model,String search_shield_sensitive){
         System.out.println("准备查找");
         System.out.println(search_shield_sensitive);

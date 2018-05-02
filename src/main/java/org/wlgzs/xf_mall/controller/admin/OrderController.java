@@ -10,17 +10,18 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @Auther: Administrator
+ * @Auther: 李晓珊
  * @Date: 2018/4/20 20:46
  * @Description:
  */
 @Controller
+@RequestMapping("AdminOrdersController")
 public class OrderController {
     @Resource
     OrdersService ordersService;
 
     //后台订单列表
-    @RequestMapping("/OrderController/allOrders")
+    @RequestMapping("/allProductOrdersLists")
     public String list(Model model) {
         List<Orders> orders=ordersService.getOrdersList();
         model.addAttribute("orders", orders);
@@ -28,7 +29,7 @@ public class OrderController {
     }
 
     //跳转至修改订单页面
-    @RequestMapping("/OrdersController/toChangeOrders")
+    @RequestMapping("/toChangeProductOrders")
     public String toEdit(Model model, Long id) {
         Orders order=ordersService.findOrdersById(id);
         model.addAttribute("order", order);
@@ -36,7 +37,7 @@ public class OrderController {
     }
 
     //后台通过订单号查询订单
-    @RequestMapping("/OrderController/findOrder")
+    @RequestMapping("/changeProductOrders")
     public String findOrders(Model model,String order_number){
         List<Orders> orders = ordersService.findOrdersByOrderNumber(order_number);
         model.addAttribute("orders",orders);
@@ -45,21 +46,21 @@ public class OrderController {
     }
 
     //后台修改订单信息
-    @RequestMapping("/OrdersController/changeOrders")
+    @RequestMapping("/changeProductOrder")
     public String edit(Orders order) {
         ordersService.edit(order);
         return "redirect:/OrderController/allOrders";
     }
 
     //后台删除订单
-    @RequestMapping("/OrderController/deleteOrder")
+    @RequestMapping("/deleteOrder")
     public String delete(Long id){
         ordersService.delete(id);
         return "redirect:/OrderController/allOrders";
     }
 
     //订单详情
-    @RequestMapping("/OrderController/orderDetails")
+    @RequestMapping("/orderDetails")
     public String orderInfo(Model model, Long id) {
         Orders order=ordersService.findOrdersById(id);
         model.addAttribute("order", order);
@@ -84,7 +85,7 @@ public class OrderController {
     //通过用户名查询订单
 
     //后台通过订单号查询订单
-    @RequestMapping("/OrderController/userFindOrder")
+    @RequestMapping("/userFindOrder")
     public String userFindOrders(Model model,String order_number){
         List<Orders> orders = ordersService.findOrdersByOrderNumber(order_number);
         model.addAttribute("orders",orders);
@@ -92,7 +93,7 @@ public class OrderController {
         return "/userOrdersList";
     }
 
-    @RequestMapping("/OrderController/findUserOrder")
+    @RequestMapping("/findUserOrder")
     public String UserOrders(Model model,String user_name){
         List<Orders> orders = ordersService.findOrdersByUserName(user_name);
         model.addAttribute("orders",orders);
