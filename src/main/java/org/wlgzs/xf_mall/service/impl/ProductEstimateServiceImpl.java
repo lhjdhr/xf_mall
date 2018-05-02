@@ -9,9 +9,9 @@ import org.wlgzs.xf_mall.service.ProductEstimateService;
 import javax.websocket.OnClose;
 
 /**
- * @Auther: Administrator
+ * @Auther: 李晓珊
  * @Date: 2018/4/23 13:16
- * @Description:
+ * @Description: 商品评价
  */
 @Service
 public class ProductEstimateServiceImpl implements ProductEstimateService {

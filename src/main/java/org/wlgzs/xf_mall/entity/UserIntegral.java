@@ -15,9 +15,11 @@ import javax.persistence.*;
 public class UserIntegral {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long UserIntegral_id;   //积分id
+    private long userIntegral_id;   //积分id
+    @Column(nullable = false)
     private long user_id;   //用户id
-    private int UserIntegral_vary;   //积分变化(正负)
+    @Column(nullable = false)
+    private int  userIntegral_vary;   //积分变化(正负)
     @Column(nullable = false,length = 50)
     private String product_keyword; //商品关键字
     @Column(nullable = false,length = 100)
