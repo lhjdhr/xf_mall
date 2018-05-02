@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>头像修改</title>
+</head>
+<body>
+<form th:action="@{/UserManagementController/ModifyAvatar}" th:object="${user}" method="post" enctype="multipart/form-data">
+    <input type="hidden" th:value="*{user_id}" name="user_id">
+    <input type="file" name="file">
+    <input type="submit" th:value="提交">
+</form>
+
+</body>
+</html>

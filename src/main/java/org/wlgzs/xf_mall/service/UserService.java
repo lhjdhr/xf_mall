@@ -26,4 +26,7 @@ public interface UserService {
 
     Page<User> findUserPage(String user_name,int pa,int limit);
 
+    //修改用户头像路径
+    void modifyAvatar(String user_avatar,long id);
+
 }
