@@ -132,8 +132,8 @@ public class ProductServiceImpl implements ProductService {
 
     //通过id查找商品
     @Override
-    public Product findProductById(long product_id) {
-        Product product = productRepository.findById(product_id);
+    public Product findProductById(long productId) {
+        Product product = productRepository.findById(productId);
         String img;
         if (product.getProduct_picture().contains(",")){
             img = product.getProduct_picture();

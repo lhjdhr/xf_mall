@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8"/>
     <title>修改用户</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 </head>
 <body class="container">
 <br/>
 <h1>修改用户</h1>
 <br/><br/>
 <div class="with:80%">
-    <form class="form-horizontal"   th:action="@{/AdminUserController/adminEditUser}" th:object="${user}"  method="post">
+    <form class="form-horizontal" th:action="@{/AdminUserController/adminEditUser}" th:object="${user}"  method="post">
         <input type="hidden" name="user_id" th:value="*{userId}" />
         <div class="form-group">
             <label for="user_name" class="col-sm-2 control-label">userName</label>

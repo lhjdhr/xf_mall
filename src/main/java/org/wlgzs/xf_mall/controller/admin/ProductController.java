@@ -1,6 +1,5 @@
 package org.wlgzs.xf_mall.controller.admin;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,12 +16,8 @@ import org.wlgzs.xf_mall.util.ResultUtil;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+
 
 /**
  * @Auther: 阿杰

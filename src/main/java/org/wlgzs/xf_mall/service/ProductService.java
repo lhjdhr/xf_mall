@@ -26,7 +26,7 @@ public interface ProductService {
 
     void delete(long product_id);
 
-    Product findProductById(long product_id);
+    Product findProductById(long productId);
 
     Page getProductCategoryList(String category_name, int page, int limit);
 
