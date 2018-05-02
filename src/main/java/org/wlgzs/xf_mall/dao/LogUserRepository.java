@@ -17,4 +17,7 @@ public interface LogUserRepository extends JpaRepository<User, Long>,JpaSpecific
 
     @Query("FROM User u WHERE u.user_name=?1")
     User selectName(String user_name);
+
+    @Query("FROM User u WHERE u.user_mail=?1")
+    User selectEmail(String user_mail);
 }

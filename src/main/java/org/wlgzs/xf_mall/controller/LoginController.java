@@ -34,6 +34,7 @@ public class LoginController {
     @Resource
     UserService userService;
 
+
     @RequestMapping("/registeredMail")
     public String register(HttpServletRequest request, Model model, User user, String code) {
         //判断用户是否合法
@@ -49,7 +50,7 @@ public class LoginController {
     //去注册
     @RequestMapping("/toRegistered")
     public String toRegister() {
-        return "sign-up";
+        return "sign-up1";
     }
 
     //去登陆
@@ -59,7 +60,7 @@ public class LoginController {
     }
 
     @RequestMapping("/registered")
-    public String register(HttpServletRequest request){
+    public String register(Model model,HttpServletRequest request,HttpSession session){
         Map<String, String[]> properties = request.getParameterMap();
         User user = new User();
         try {
@@ -69,9 +70,22 @@ public class LoginController {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        user.setUser_role("普通用户");
-        userService.save(user);
-        return "redirect:/login";
+        String user_name = user.getUser_name();
+        String user_mail = user.getUser_mail();
+        //判断用户名是否已经存在
+        if(logUserService.selectName(user_name)){//存在
+            System.out.println("hahahahahha");
+            model.addAttribute("user_mail",user_mail);
+            return "sign-up2";
+        }else{//不存在
+            System.out.println("123456798");
+            String realPath = session.getServletContext().getRealPath("/headPortrait");
+            String user_avatar = realPath+"morende.jpg";
+            user.setUser_avatar(user_avatar);
+            user.setUser_role("普通用户");
+            userService.save(user);
+            return "redirect:/login";
+        }
     }
 
     /**
@@ -86,6 +100,8 @@ public class LoginController {
         User user = logUserService.login(request, user_name, user_password);
         System.out.println(user);
         if (user != null) {
+            HttpSession session = request.getSession();
+
             if (user.getUser_role().equals("管理员")) {
                 model.addAttribute("user", user);
                 return "adminIndex";
@@ -115,10 +131,24 @@ public class LoginController {
      */
     @ResponseBody
     @RequestMapping(value = "sendEmail", method = RequestMethod.POST)
-    public void sendEmail(HttpServletRequest request) {
+    public void sendEmail(Model model,HttpServletRequest request,HttpServletResponse response) {
         String user_mail = request.getParameter("user_mail");
-        System.out.println("in-----------------");
-        logUserService.sendEmail(request, user_mail);//发送
+        System.out.println("123456789");
+        if(logUserService.selectEmail(user_mail)){
+            System.out.println("out---------------");
+            model.addAttribute("mag","该邮箱已存在");
+            String result = "该邮箱已存在";
+            PrintWriter out = null;
+            try {
+                out = response.getWriter();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            out.write(result.toString()); //将数据传到前台
+        }else{
+            System.out.println("in-----------------");
+            logUserService.sendEmail(request, user_mail);//发送
+        }
     }
 
     /**
@@ -129,18 +159,21 @@ public class LoginController {
      * @Description:验证用户验证码是否正确
      */
     @RequestMapping("contrastCode")
-    public void contrastCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public String contrastCode(Model model,HttpServletRequest request){
+        String user_mail = request.getParameter("user_mail");
         HttpSession session = request.getSession();
         String usercode = request.getParameter("user_code"); //获取用户输入的验证码
         String sessioncode = (String) session.getAttribute("authCode"); //获取保存在session里面的验证码
-        String result = "";
-        if (usercode != null && usercode.equals(sessioncode)) { //对比两个code是否正确
-            result = "1";
+        String sessionMail = (String) session.getAttribute("user_mail");
+        if (usercode != null && usercode.equals(sessioncode)&&user_mail != null && user_mail.equals(sessionMail)) { //对比两个code是否正确
+            model.addAttribute("user_mail",user_mail);
+            System.out.println("222");
+            return "sign-up2";
         } else {
-            result = "0";
+            model.addAttribute("mag","请检查您的验证码或邮箱是否正确");
+            System.out.println("111");
+            return "sign-up1";
         }
-        PrintWriter out = response.getWriter();
-        out.write(result.toString()); //将数据传到前台
     }
 
 }

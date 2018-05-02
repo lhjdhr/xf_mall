@@ -2,6 +2,7 @@ package org.wlgzs.xf_mall.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.wlgzs.xf_mall.dao.UserManagementRepository;
 import org.wlgzs.xf_mall.entity.User ;
 import org.wlgzs.xf_mall.dao.UserRepository;
 import org.wlgzs.xf_mall.service.UserService;
@@ -18,6 +19,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserManagementRepository userManagementRepository;
 
     //后台遍历用户
     @Override
@@ -54,6 +58,12 @@ public class UserServiceImpl implements UserService {
     public List<User> findByUserName(String user_name) {
         return userRepository.findByUserName(user_name);
     }
+
+    @Override
+    public void modifyAvatar(String user_avatar,long id) {
+        userRepository.ModifyAvatar(user_avatar,id);
+    }
+
 }
 
 

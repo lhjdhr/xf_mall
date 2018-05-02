@@ -54,6 +54,7 @@ public class LogUserServiceImpl implements LogUserService {
         System.out.println(authCode);
         session.setMaxInactiveInterval(60 * 2);
         session.setAttribute("authCode", authCode);
+        session.setAttribute("user_mail", user_mail);
         //发送者
         mainMessage.setFrom("huystar@126.com");
         //接收者
@@ -75,6 +76,27 @@ public class LogUserServiceImpl implements LogUserService {
         HttpSession session = request.getSession(true);
         String Code = (String) session.getAttribute("code");
         if(Code.equals(code)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //判断邮箱是否已存在
+    @Override
+    public boolean selectEmail(String user_mail){
+        User user = logUserRepository.selectEmail(user_mail);
+        if(user != null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    //判断用户名是否已存在
+    @Override
+    public boolean selectName(String user_name) {
+        User user = logUserRepository.selectName(user_name);
+        if(user != null){
             return true;
         }else{
             return false;

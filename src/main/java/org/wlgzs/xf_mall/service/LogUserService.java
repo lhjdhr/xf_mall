@@ -23,4 +23,9 @@ public interface LogUserService {
     //发送验证码到邮箱
     void sendEmail(HttpServletRequest request,String user_mail);
 
+    //判断邮箱是否已存在
+    boolean selectEmail(String user_mail);
+
+    //判断用户名是否存在
+    boolean selectName(String user_name);
 }

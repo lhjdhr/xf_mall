@@ -23,4 +23,7 @@ public interface UserService {
 
     List<User> findByUserName(String user_name);
 
+    //修改用户头像路径
+    void modifyAvatar(String user_avatar,long id);
+
 }
