@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long product_id;//商品id
+    private long productId;//商品id
     @Column(nullable = false)
     private int product_isShelf;//是否上架
     @Column(nullable = false,length = 50)

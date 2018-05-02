@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class ProductCategory {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long category_id;  //商品类别id
+    private long categoryId;  //商品类别id
     @Column(nullable = false,length = 10)
     private String category_name;  //类别名称
     @Column(nullable = false,length = 10)

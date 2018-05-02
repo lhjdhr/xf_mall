@@ -1,7 +1,12 @@
 package org.wlgzs.xf_mall.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.web.multipart.MultipartFile;
 import org.wlgzs.xf_mall.entity.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -11,19 +16,19 @@ import java.util.List;
  */
 public interface ProductService {
 
-    List<Product> getProductList();
+    Page<Product> getProductListPage(String product_keywords, int page, int limit);
 
-    void save(Product product);
+    void saveProduct(String product_details,MultipartFile[] myFileNames, HttpSession session, HttpServletRequest request);
+
+    String[] uploadImg(MultipartFile myFileName, HttpSession session, HttpServletRequest request);
 
     void edit(Product product);
 
     void delete(long product_id);
 
-    Product findProductById(long product_id);
+    Product findProductById(long productId);
 
-    List<Product> findByProductKeywords(String product_keywords);
-
-    List<ProductCategory> getProductCategoryList();
+    Page getProductCategoryList(String category_name, int page, int limit);
 
     void save(ProductCategory productCategory);
 
@@ -35,19 +40,17 @@ public interface ProductService {
 
     ProductCategory findProductCategoryById(long id);
 
-    List<ProductCategory> findByProductCategory(String category_name);
-
-    void save(ShoppingCart shoppingCart);
+    void save(long user_id,long product_id,HttpServletRequest request);
 
     ShoppingCart findByUserIdAndProductId(long user_id, long product_id);
 
-    void save(Collection collection);
+    void saveCollection(long user_id,long product_id,HttpServletRequest request);
 
     Collection findByCollectionUserIdAndProductId(long user_id, long product_id);
 
-    void save(ShippingAddress shippingAddress);
-
     List<ShoppingCart> findByUserIdCart(long user_id);
+
+    void moveToCollectionProduct(long shoppingCart_id,long user_id,long product_id,HttpServletRequest request);
 
     void deleteShoppingCart(long shoppingCart_id);
 

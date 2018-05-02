@@ -73,6 +73,22 @@
             <artifactId>commons-io</artifactId>
             <version>2.4</version>
         </dependency>
+        <dependency>
+            <groupId>net.guerlab</groupId>
+            <artifactId>sdk-alipay-starter</artifactId>
+            <version>1.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.33</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.pentahohub.nexus/alipay-sdk-java -->
+        <dependency>
+            <groupId>com.pentahohub.nexus</groupId>
+            <artifactId>alipay-sdk-java</artifactId>
+            <version>20150820220052</version>
+        </dependency>
     </dependencies>
 
     <build>

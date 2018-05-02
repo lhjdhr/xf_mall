@@ -15,17 +15,10 @@ import java.util.List;
  * @description:
  **/
 @Controller
-@RequestMapping("AdminProductController")
+@RequestMapping("SearchShieldController")
 public class SearchShieldController {
     @Resource
     SearchShieldService searchShieldService;
-
-    @RequestMapping("/toChangeProductSensitive")
-    public String toChangeProductSensitive(Model model, Long id){
-        SearchShield searchShield = searchShieldService.findSearchShieldById(id);
-        model.addAttribute("searchShield",searchShield);
-        return "admin/changeProductSensitive";
-    }
 
     /**     
      * @author 胡亚星

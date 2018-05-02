@@ -30,13 +30,13 @@
         </thead>
         <tbody>
         <tr  th:each="user : ${users}">
-            <th scope="row" th:text="${user.user_id}"></th>
+            <th scope="row" th:text="${user.userId}"></th>
             <td th:text="${user.user_name}"></td>
             <td th:text="${user.user_password}"></td>
             <td th:text="${user.user_phone}"></td>
             <td th:text="${user.user_mail}"></td>
-            <td><a th:href="@{/AdminUserController/toAdminEditUser(id=${user.user_id})}">edit</a></td>
-            <td><a th:href="@{/AdminUserController/adminDeleteUser(id=${user.user_id})}">delete</a></td>
+            <td><a th:href="@{/AdminUserController/toAdminEditUser(userId=${user.userId})}">edit</a></td>
+            <td><a th:href="@{/AdminUserController/adminDeleteUser(userId=${user.userId})}">delete</a></td>
         </tr>
         </tbody>
     </table>
