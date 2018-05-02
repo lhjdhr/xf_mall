@@ -90,14 +90,13 @@ public class OrderController {
         List<Orders> orders = ordersService.findOrdersByOrderNumber(order_number);
         model.addAttribute("orders",orders);
         model.addAttribute("order_number",order_number);
-        return "/userOrdersList";
+        return "userOrdersList";
     }
 
     @RequestMapping("/findUserOrder")
     public String UserOrders(Model model,String user_name){
         List<Orders> orders = ordersService.findOrdersByUserName(user_name);
         model.addAttribute("orders",orders);
-        model.addAttribute("user_name",user_name);
-        return "/userOrdersList";
+        return "userOrdersList";
     }
 }
