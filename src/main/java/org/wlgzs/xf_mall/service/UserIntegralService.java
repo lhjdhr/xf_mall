@@ -20,7 +20,7 @@ public interface UserIntegralService {
 
     UserIntegral findUserIntegralById(long id);
 
-    void delete(Long userIntegral_id);
+    void delete(Long userIntegralId);
 
     void save(long userId,HttpServletRequest request);
 }

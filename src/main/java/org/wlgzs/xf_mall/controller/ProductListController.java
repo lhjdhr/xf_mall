@@ -106,20 +106,20 @@ public class ProductListController {
      * @description 购物车移至收藏
      */
     @RequestMapping("/moveToCollectionProduct")
-    public  ModelAndView moveToCollectionProduct(long shoppingCart_id,long userId,long productId,HttpServletRequest request){
-        productService.moveToCollectionProduct(shoppingCart_id,userId,productId,request);
+    public  ModelAndView moveToCollectionProduct(long shoppingCartId,long userId,long productId,HttpServletRequest request){
+        productService.moveToCollectionProduct(shoppingCartId,userId,productId,request);
         String url="redirect:/ProductListController/shoppingCart?userId="+userId;
         return new ModelAndView(url);
     }
     /**
      * @author 阿杰
-     * @param [shoppingCart_id, userId]
+     * @param [shoppingCartId, userId]
      * @return org.springframework.web.servlet.ModelAndView
      * @description 删除购物车
      */
     @RequestMapping("/deleteShoppingProduct")
-    public  ModelAndView deleteShoppingProduct(long shoppingCart_id,long userId){
-        productService.deleteShoppingCart(shoppingCart_id);
+    public  ModelAndView deleteShoppingProduct(long shoppingCartId,long userId){
+        productService.deleteShoppingCart(shoppingCartId);
         String url="redirect:/ProductListController/shoppingCart?userId="+userId;
         return new ModelAndView(url);
     }

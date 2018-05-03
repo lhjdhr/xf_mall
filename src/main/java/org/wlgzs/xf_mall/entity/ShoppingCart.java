@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long shoppingCart_id;//购物车id
+    private long shoppingCartId;//购物车id
     private long productId;//商品id
     private long userId;//用户id
     @Column(nullable = false,length = 200)

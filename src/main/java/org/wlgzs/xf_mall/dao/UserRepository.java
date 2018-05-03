@@ -28,4 +28,19 @@ public interface UserRepository extends JpaRepository<User, Long>,JpaSpecificati
     @Modifying
     @Transactional
     void ModifyAvatar(String user_avatar,long id);
+
+    //修改密码：判断用户输入密码是否正确
+    @Query("FROM User u WHERE u.user_password=?1 and u.userId=?2")
+    User checkPassWord(String user_password,long id);
+
+    @Query("UPDATE User u SET u.user_password=user_password WHERE u.userId=id")
+    @Modifying
+    @Transactional
+    void changePassword(String user_password,long id);
+
+    @Query("UPDATE User u SET u.user_password=user_password WHERE u.user_mail=user_mail")
+    @Modifying
+    @Transactional
+    void changePassword(String user_password,String user_mail);
+
 }

@@ -32,12 +32,12 @@
         </thead>
         <tbody>
         <tr  th:each="integral : ${integralLists}">
-            <th scope="row" th:text="${integral.userIntegral_id}"></th>
+            <th scope="row" th:text="${integral.userIntegralId}"></th>
             <td th:text="${integral.product_picture}"></td>
             <td th:text="${integral.product_keyword}"></td>
             <td th:text="${integral.userIntegral_vary}"></td>
-            <td><a th:href="@{/OrderController/orderDetails(userIntegral_id=${integral.userIntegral_id},userId = ${integral.userId})}">详情</a></td>
-            <td><a th:href="@{/UserIntegralController/deleteUserIntegral(userIntegral_id=${integral.userIntegral_id},userId = ${integral.userId})}">删除</a></td>
+            <td><a th:href="@{/OrderController/orderDetails(userIntegral_id=${integral.userIntegralId},userId = ${integral.userId})}">详情</a></td>
+            <td><a th:href="@{/UserIntegralController/deleteUserIntegral(userIntegral_id=${integral.userIntegralId},userId = ${integral.userId})}">删除</a></td>
         </tr>
         </tbody>
     </table>

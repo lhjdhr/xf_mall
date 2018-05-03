@@ -50,9 +50,9 @@ public interface ProductService {
 
     List<ShoppingCart> findByUserIdCart(long userId);
 
-    void moveToCollectionProduct(long shoppingCart_id,long userId,long productId,HttpServletRequest request);
+    void moveToCollectionProduct(long shoppingCarId,long userId,long productId,HttpServletRequest request);
 
-    void deleteShoppingCart(long shoppingCart_id);
+    void deleteShoppingCart(long shoppingCartId);
 
     List<Collection> findByUserIdCollection(long userId);
 

@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class UserIntegral {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long userIntegral_id;   //积分id
+    private long userIntegralId;   //积分id
     @Column(nullable = false)
     private long userId;   //用户id
     @Column(nullable = false)

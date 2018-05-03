@@ -15,7 +15,7 @@ import java.util.Date;
 public class ProductEstimate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long estimate_id;  //评价id
+    private long estimateId;  //评价id
     private long productId;   //商品id
     private long userId;  //用户id
     @Column(nullable = false,length = 30)
@@ -30,6 +30,6 @@ public class ProductEstimate {
     private String estimate_content;   //评价内容
     @Column(nullable = false,length = 200)
     private String estimate_img;   //买家秀
-    private long order_id;
+    private long orderId;
 }
 

@@ -17,7 +17,7 @@ import javax.persistence.Id;
 public class Collection {
     @Id
     @GeneratedValue()
-    private long collection_id;//收藏id
+    private long collectionId;//收藏id
     private long userId;//用户id
     private long productId;//商品id
     @Column(nullable = false,length = 50)

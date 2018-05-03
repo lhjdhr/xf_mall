@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class ShippingAddress {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long address_id; //收货id
+    private long addressId; //收货id
     @Column(nullable = false,length = 30)
     private String user_name; //用户名
     @Column(nullable = false,length = 30)
