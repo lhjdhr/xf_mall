@@ -18,7 +18,7 @@ import java.util.Date;
 public class Footprint {
     @Id
     @GeneratedValue()
-    private long footprint_id;//足迹id
+    private long footprintId;//足迹id
     private long user_id;//用户id
     private long product_id;//商品id
     @Column(nullable = false,length = 50)

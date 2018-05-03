@@ -68,7 +68,7 @@ public class UerIntegralServiceImpl implements UserIntegralService {
 
     //删除积分记录
     @Override
-    public void delete(Long userIntegral_id){
-        userIntegralRepository.deleteById(userIntegral_id);
+    public void delete(Long userIntegralId){
+        userIntegralRepository.deleteById(userIntegralId);
     }
 }

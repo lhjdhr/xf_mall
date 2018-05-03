@@ -104,11 +104,11 @@
                         <span class="subtotal"></span>
                     </td>
                     <td th:width="158">
-                        <form th:action="@{/ProductListController/moveToCollectionProduct(product_id=*{shoppingCart.product_id},shoppingCart_id=*{shoppingCart.shoppingCart_id},user_id=46)}"
+                        <form th:action="@{/ProductListController/moveToCollectionProduct(product_id=*{shoppingCart.product_id},shoppingCartId=*{shoppingCart.shoppingCartId},user_id=46)}"
                               method="post">
                             <input style="height: 24px;" value="移入收藏" type="submit">
                         </form>
-                        <form th:action="@{/ProductListController/deleteShoppingProduct(shoppingCart_id=*{shoppingCart.shoppingCart_id},user_id=46)}"
+                        <form th:action="@{/ProductListController/deleteShoppingProduct(shoppingCartId=*{shoppingCart.shoppingCartId},user_id=46)}"
                               method="post">
                             <input style="height: 24px;" value="删除" type="submit">
                         </form>

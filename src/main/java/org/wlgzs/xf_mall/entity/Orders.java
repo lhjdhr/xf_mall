@@ -16,7 +16,7 @@ import java.util.Date;
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long order_id;//订单id
+    private long orderId;//订单id
     @Column(nullable = false)
     private long product_id;//商品id
     @Column(nullable = false)

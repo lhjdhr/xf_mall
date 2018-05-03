@@ -1,16 +1,14 @@
 package org.wlgzs.xf_mall.controller;
 
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.apache.commons.beanutils.BeanUtils;
-import org.omg.CORBA.Request;
-import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.wlgzs.xf_mall.entity.Product;
+
 import org.wlgzs.xf_mall.entity.ShippingAddress;
 import org.wlgzs.xf_mall.entity.User;
 import org.wlgzs.xf_mall.service.LogUserService;
@@ -149,42 +147,61 @@ public class UserManagementController {
     }
 
     /**
+     * @param
+     * @return
      * @author 胡亚星
      * @date 2018/5/2 18:03
-     * @param
-     * @return
-     *@Description:修改密码,输入正确的密码
+     * @Description:修改密码,判断原先密码是否正确
      */
-//    @RequestMapping("changePassword")
-//    public ModelAndView changePassword(Model model, HttpServletRequest request){
-//        String user_password = request.getParameter("user_password");
-//        String password = request.getParameter("password");
-//
-//
-//    }
-
-    /**
-     * @author 胡亚星
-     * @date 2018/4/27 20:06  
-     * @param
-     * @return
-     *@Description:发送验证码
-     */
-    @RequestMapping("sendChangePhone")
-    public void sendChangePhone(HttpServletRequest request){
-        String user_mail = request.getParameter("user_mail");
-        logUserService.sendEmail(request, user_mail);//发送
+    @RequestMapping("checkPassword")
+    public ModelAndView checkPassword(Model model, HttpServletRequest request, Long id) {
+        String user_password = request.getParameter("user_password");
+        if (userService.checkPassWord(user_password, id)) {//正确跳转到新密码位置
+            model.addAttribute("id", id);
+            return new ModelAndView("changePassword");
+        } else {//原密码错误
+            return new ModelAndView("");
+        }
     }
 
-    /**     
+    /**
+     * @param
+     * @return
      * @author 胡亚星
-     * @date 2018/5/2 18:19  
-     * @param   
-     * @return   
-     *@Description:用户电话的修改
+     * @date 2018/5/3 8:13
+     * @Description:修改密码
+     */
+    @RequestMapping("changePassword")
+    public ModelAndView changePassword(Model model, HttpServletRequest request, Long id) {
+        String user_passsword = request.getParameter("user_passsword");
+        userService.changePassword(user_passsword, id);
+        model.addAttribute("mgs", "修改成功");
+        return new ModelAndView("login");
+    }
+
+
+    /**
+     * @param
+     * @return
+     * @author 胡亚星
+     * @date 2018/4/27 20:06
+     * @Description:发送验证码
+     */
+    @RequestMapping("sendChangePhone")
+    public void sendChangePhone(HttpServletRequest request) {
+        String user_mail = request.getParameter("user_mail");
+        logUserService.sendEmail1(request, user_mail);//发送
+    }
+
+    /**
+     * @param
+     * @return
+     * @author 胡亚星
+     * @date 2018/5/2 18:19
+     * @Description:用户电话的修改
      */
     @RequestMapping("changePhone")
-    public ModelAndView changePhone(Model model, HttpServletRequest request){
+    public ModelAndView changePhone(Model model, HttpServletRequest request) {
         Map<String, String[]> properties = request.getParameterMap();
         String id = request.getParameter("user_id");
         long user_id = Long.parseLong(id);
@@ -203,16 +220,70 @@ public class UserManagementController {
         return new ModelAndView("information");
     }
 
-    
-    /**     
+    /**
+     * @param
+     * @return
      * @author 胡亚星
-     * @date 2018/5/2 17:57  
-     * @param   
-     * @return   
-     *@Description:找回密码
+     * @date 2018/5/3 8:51
+     * @Description:跳转到找回密码页面
      */
-    //@RequestMapping("")
+    @RequestMapping("toSendRetrievePassword")
+    public ModelAndView toSendRetrievePassword() {
+        return new ModelAndView("toSendRetrievePassword");
+    }
 
+    /**
+     * @param
+     * @return
+     * @author 胡亚星
+     * @date 2018/5/3 8:43
+     * @Description:找回密码发送邮箱
+     */
+    @RequestMapping("sendRetrievePassword")
+    public void sendRetrievePassword(HttpServletRequest request, String user_mail) {
+        logUserService.sendEmail2(request, user_mail);//发送
+    }
+
+
+    /**
+     * @param
+     * @return
+     * @author 胡亚星
+     * @date 2018/5/2 17:57
+     * @Description:找回密码验证
+     */
+    @RequestMapping("passwordContrastCode")
+    public ModelAndView passwordContrastCode(Model model, HttpServletRequest request) {
+        String user_mail = request.getParameter("user_mail");
+        HttpSession session = request.getSession();
+        String usercode = request.getParameter("user_code"); //获取用户输入的验证码
+        String sessioncode = (String) session.getAttribute("authCode"); //获取保存在session里面的验证码
+        String sessionMail = (String) session.getAttribute("user_mail");//获取保存在session里面的邮箱
+        if (usercode != null && usercode.equals(sessioncode) && user_mail != null && user_mail.equals(sessionMail)) { //对比两个code是否正确
+            model.addAttribute("user_mail", user_mail);
+            System.out.println("222");
+            return new ModelAndView("retrievePassword");
+        } else {
+            model.addAttribute("mag", "请检查您的验证码或邮箱是否正确");
+            System.out.println("111");
+            return new ModelAndView("toSendRetrievePassword");
+        }
+    }
+
+    /**
+     * @param
+     * @return
+     * @author 胡亚星
+     * @date 2018/5/3 8:46
+     * @Description: 重置密码
+     */
+    @RequestMapping("retrievePassword")
+    public ModelAndView retrievePassword(Model model, HttpServletRequest request, String user_mail) {
+        String user_password = request.getParameter("user_password");
+        userService.changePassword(user_password, user_mail);
+        model.addAttribute("mgs", "修改成功");
+        return new ModelAndView("login");
+    }
 
     /**
      * @param

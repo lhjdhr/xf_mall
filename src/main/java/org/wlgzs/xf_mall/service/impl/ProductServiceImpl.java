@@ -241,7 +241,7 @@ public class ProductServiceImpl implements ProductService {
         }
         Collection findCollection = collectionRepository.findByCollectionUserIdAndProductId(user_id,product_id);
         if(findCollection != null){
-            collectionRepository.deleteById(findCollection.getCollection_id());
+            collectionRepository.deleteById(findCollection.getCollectionId());
             collectionRepository.save(findCollection);
         }
         if(findCollection == null){
@@ -278,8 +278,8 @@ public class ProductServiceImpl implements ProductService {
 
     //购物车移至收藏
     @Override
-    public void moveToCollectionProduct(long shoppingCart_id, long user_id, long product_id, HttpServletRequest request) {
-        shoppingCartRepository.deleteById(shoppingCart_id);
+    public void moveToCollectionProduct(long shoppingCartId, long user_id, long product_id, HttpServletRequest request) {
+        shoppingCartRepository.deleteById(shoppingCartId);
 
         Product product = productRepository.findById(product_id);
 
@@ -294,7 +294,7 @@ public class ProductServiceImpl implements ProductService {
         }
         Collection findCollection = collectionRepository.findByCollectionUserIdAndProductId(user_id,product_id);
         if(findCollection != null){
-            collectionRepository.deleteById(findCollection.getCollection_id());
+            collectionRepository.deleteById(findCollection.getCollectionId());
             collectionRepository.save(findCollection);
         }
         if(findCollection == null){
@@ -310,8 +310,8 @@ public class ProductServiceImpl implements ProductService {
 
     //删除购物车
     @Override
-    public void deleteShoppingCart(long shoppingCart_id) {
-        shoppingCartRepository.deleteById(shoppingCart_id);
+    public void deleteShoppingCart(long shoppingCartId) {
+        shoppingCartRepository.deleteById(shoppingCartId);
     }
 
     //用户的收藏

@@ -95,6 +95,25 @@ public class UserServiceImpl implements UserService {
         userRepository.ModifyAvatar(user_avatar,id);
     }
 
+    @Override
+    public boolean checkPassWord(String user_password, long id) {
+        User user = userRepository.checkPassWord(user_password,id);
+        if(user != null){//正确
+            return true;
+        }else{//错误
+            return false;
+        }
+    }
+
+    @Override
+    public void changePassword(String user_password, long id) {
+        userRepository.changePassword(user_password,id);
+    }
+
+    @Override
+    public void changePassword(String user_password, String user_mail) {
+
+    }
 }
 
 

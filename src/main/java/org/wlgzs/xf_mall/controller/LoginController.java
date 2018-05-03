@@ -164,7 +164,7 @@ public class LoginController {
         HttpSession session = request.getSession();
         String usercode = request.getParameter("user_code"); //获取用户输入的验证码
         String sessioncode = (String) session.getAttribute("authCode"); //获取保存在session里面的验证码
-        String sessionMail = (String) session.getAttribute("user_mail");
+        String sessionMail = (String) session.getAttribute("user_mail");//获取保存在session里面的邮箱
         if (usercode != null && usercode.equals(sessioncode)&&user_mail != null && user_mail.equals(sessionMail)) { //对比两个code是否正确
             model.addAttribute("user_mail",user_mail);
             System.out.println("222");

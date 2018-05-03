@@ -61,8 +61,8 @@ public class IntegralController {
 
     //删除积分记录
     @RequestMapping("/UserIntegralController/deleteUserIntegral")
-    public String delete(long userIntegral_id,long user_id) {
-        userIntegralService.delete(userIntegral_id);
+    public String delete(long userIntegralId,long user_id) {
+        userIntegralService.delete(userIntegralId);
         return "redirect:/IntegralController/integralList?user_id="+user_id;
     }
 }

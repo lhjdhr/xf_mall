@@ -23,6 +23,12 @@ public interface LogUserService {
     //发送验证码到邮箱
     void sendEmail(HttpServletRequest request,String user_mail);
 
+    //发送验证码到邮箱
+    void sendEmail1(HttpServletRequest request,String user_mail);
+
+    //发送验证码到邮箱
+    void sendEmail2(HttpServletRequest request,String user_mail);
+
     //判断邮箱是否已存在
     boolean selectEmail(String user_mail);
 
