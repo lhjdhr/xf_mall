@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class SearchShield {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long searchShield_id; //搜索屏蔽id
+    private long searchShieldId; //搜索屏蔽id
     @Column(nullable = false,length = 20)
     private String searchShield_Sensitive; //敏感词
 

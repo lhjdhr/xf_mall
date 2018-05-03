@@ -21,9 +21,9 @@ public interface UserIntegralRepository extends JpaRepository <UserIntegral,Long
 
     //遍历积分收入
     @Query(value = "SELECT * FROM user_integral WHERE user_integral_vary > 0 and user_id = ?",nativeQuery = true)
-    List<UserIntegral>  findByIncome(@Param("user_id") long user_id);
+    List<UserIntegral>  findByIncome(@Param("user_id") long userId);
 
     //遍历积分支出
     @Query(value = "SELECT * FROM user_integral WHERE user_integral_vary < 0 and user_id = ?",nativeQuery = true)
-    List<UserIntegral>  findByExpend(@Param("user_id") long user_id);
+    List<UserIntegral>  findByExpend(@Param("user_id") long userId);
 }

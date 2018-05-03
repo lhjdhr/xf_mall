@@ -45,7 +45,7 @@ public class SearchShieldController {
     public String addSearchShield(SearchShield searchShield){
         searchShieldService.save(searchShield);
         System.out.println("添加成功");
-        return "redirect:/AdminProductController/toProductSensitive";
+        return "redirect:/SearchShieldController/toProductSensitive";
     }
 
     /**
@@ -58,7 +58,7 @@ public class SearchShieldController {
     @RequestMapping("/deleteProductSensitive")
     public String deleteSearchShield(Long id){
         searchShieldService.delete(id);
-        return "redirect:/AdminProductController/toProductSensitive";
+        return "redirect:/SearchShieldController/toProductSensitive";
     }
 
     /**

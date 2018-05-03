@@ -15,7 +15,7 @@ import java.util.List;
  * @Description:
  */
 @Controller
-@RequestMapping("AdminOrdersController")
+@RequestMapping("OrderController")
 public class OrderController {
     @Resource
     OrdersService ordersService;
@@ -37,7 +37,7 @@ public class OrderController {
     }
 
     //后台通过订单号查询订单
-    @RequestMapping("/changeProductOrders")
+    @RequestMapping("/findOrder")
     public String findOrders(Model model,String order_number){
         List<Orders> orders = ordersService.findOrdersByOrderNumber(order_number);
         model.addAttribute("orders",orders);
@@ -84,7 +84,7 @@ public class OrderController {
 
     //通过用户名查询订单
 
-    //后台通过订单号查询订单
+    //通过订单号查询订单
     @RequestMapping("/userFindOrder")
     public String userFindOrders(Model model,String order_number){
         List<Orders> orders = ordersService.findOrdersByOrderNumber(order_number);

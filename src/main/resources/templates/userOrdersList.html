@@ -10,7 +10,7 @@
 <h1>商品订单列表</h1>
 <br/><br/>
 <div class="with:80%">
-    <form th:action="@{/AdminOrdersController/userFindOrder}"  method="post">
+    <form th:action="@{/OrderController/userFindOrder}"  method="post">
         <div>
             <input type="text" id="order_number" name="order_number" th:value="*{order_number}" placeholder="订单号" >
             <input type="submit" value="搜索" class="btn btn-info" />
@@ -33,17 +33,17 @@
         </thead>
         <tbody>
         <tr  th:each="order : ${orders}">
-            <th scope="row" th:text="${order.order_id}"></th>
+            <th scope="row" th:text="${order.orderId}"></th>
             <td th:text="${order.address_name}"></td>
             <td th:text="${order.order_number}"></td>
             <td th:text="${order.product_picture}"></td>
             <td th:text="${order.product_keywords}"></td>
             <td th:text="${order.order_purchaseTime}"></td>
             <td th:text="${order.order_status}"></td>
-            <td><a th:href="@{/EstimateController/toAddEstimate(id=${order.order_id})}">评论</a></td>
-            <td><a th:href="@{/AdminOrdersController/toChangeProductOrders(id=${order.order_id})}">修改</a></td>
-            <td><a th:href="@{/AdminOrdersController/orderDetails(id=${order.order_id})}">详情</a></td>
-            <td><a th:href="@{/AdminOrdersController/deleteOrder(id=${order.order_id})}">删除</a></td>
+            <td><a th:href="@{/EstimateController/toAddEstimate(id=${order.orderId})}">评论</a></td>
+            <td><a th:href="@{/OrdersController/toChangeOrders(id=${order.orderId})}">修改</a></td>
+            <td><a th:href="@{/OrderController/orderDetails(id=${order.orderId})}">详情</a></td>
+            <td><a th:href="@{/OrderController/deleteOrder(id=${order.orderId})}">删除</a></td>
         </tr>
         </tbody>
     </table>

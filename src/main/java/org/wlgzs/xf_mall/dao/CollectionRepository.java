@@ -15,9 +15,9 @@ import java.util.List;
  */
 public interface CollectionRepository extends JpaRepository<Collection, Long>,JpaSpecificationExecutor<Collection> {
 
-    @Query(value = "SELECT o FROM Collection o WHERE o.user_id=?1")
-    List<Collection> findByUserIdCollection(long user_id);
+    @Query(value = "SELECT o FROM Collection o WHERE o.userId=?1")
+    List<Collection> findByUserIdCollection(long userId);
 
-    @Query(value = "SELECT o FROM Collection o WHERE o.user_id=?1 AND o.product_id=?2")
-    Collection findByCollectionUserIdAndProductId(long user_id, long product_id);
+    @Query(value = "SELECT o FROM Collection o WHERE o.userId=?1 AND o.productId=?2")
+    Collection findByCollectionUserIdAndProductId(long userId, long productId);
 }

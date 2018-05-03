@@ -24,7 +24,7 @@ public interface ProductService {
 
     void edit(Product product);
 
-    void delete(long product_id);
+    void delete(long productId);
 
     Product findProductById(long productId);
 
@@ -36,26 +36,26 @@ public interface ProductService {
 
     void editCategory(ProductCategory productCategory);
 
-    void deleteCategory(long id);
+    void deleteCategory(long categoryId);
 
-    ProductCategory findProductCategoryById(long id);
+    ProductCategory findProductCategoryById(long categoryId);
 
-    void save(long user_id,long product_id,HttpServletRequest request);
+    void save(long userId,long productId,HttpServletRequest request);
 
-    ShoppingCart findByUserIdAndProductId(long user_id, long product_id);
+    ShoppingCart findByUserIdAndProductId(long userId, long productId);
 
-    void saveCollection(long user_id,long product_id,HttpServletRequest request);
+    void saveCollection(long userId,long productId,HttpServletRequest request);
 
-    Collection findByCollectionUserIdAndProductId(long user_id, long product_id);
+    Collection findByCollectionUserIdAndProductId(long userId, long productId);
 
-    List<ShoppingCart> findByUserIdCart(long user_id);
+    List<ShoppingCart> findByUserIdCart(long userId);
 
-    void moveToCollectionProduct(long shoppingCart_id,long user_id,long product_id,HttpServletRequest request);
+    void moveToCollectionProduct(long shoppingCarId,long userId,long productId,HttpServletRequest request);
 
-    void deleteShoppingCart(long shoppingCart_id);
+    void deleteShoppingCart(long shoppingCartId);
 
-    List<Collection> findByUserIdCollection(long user_id);
+    List<Collection> findByUserIdCollection(long userId);
 
-    void deleteCollection(long collection_id);
+    void deleteCollection(long collectionId);
 
 }

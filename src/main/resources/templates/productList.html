@@ -32,9 +32,9 @@
         <ol class="list-inline">
             <li><a href="#">登录</a></li>
             <li><a href="#">注册</a></li>
-            <li><a th:href="@{/ProductListController/shoppingCart(user_id=46)}">购物车</a></li>
-            <li><a th:href="@{/ProductListController/collectionProduct(user_id=46)}">我的收藏</a></li>
-            <li><a href="#">我的订单</a></li>
+            <li><a th:href="@{/ProductListController/shoppingCart(userId=46)}">购物车</a></li>
+            <li><a th:href="@{/ProductListController/collectionProduct(userId=46)}">我的收藏</a></li>
+            <li><a th:href="@{/OrderController/userFindOrder(userId=46)}">我的订单</a></li>
         </ol>
     </div>
 </div>

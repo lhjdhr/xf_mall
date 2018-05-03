@@ -16,11 +16,11 @@ import java.util.Date;
 public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long order_id;//订单id
+    private long orderId;//订单id
     @Column(nullable = false)
-    private long product_id;//商品id
+    private long productId;//商品id
     @Column(nullable = false)
-    private long user_id;//用户id
+    private long userId;//用户id
     @Column(nullable = false,length = 30)
     private String user_name;//用户名
     @Column(nullable = false,length = 200)

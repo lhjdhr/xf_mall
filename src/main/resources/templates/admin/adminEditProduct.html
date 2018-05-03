@@ -11,7 +11,7 @@
 <br/><br/>
 <div class="with:80%">
     <form class="form-horizontal"   th:action="@{/AdminProductController/adminEditProduct}" th:object="${product}"  method="post">
-        <input type="hidden" name="product_id" th:value="*{product_id}" />
+        <input type="hidden" name="productId" th:value="*{productId}" />
         <div class="form-group">
             <label for="product_inventory" class="col-sm-2 control-label">库存</label>
             <div class="col-sm-10">

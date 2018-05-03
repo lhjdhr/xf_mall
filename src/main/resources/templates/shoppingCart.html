@@ -29,8 +29,8 @@
         <ol class="list-inline">
             <li><a href="#">登录</a></li>
             <li><a href="#">注册</a></li>
-            <li><a th:href="@{/ProductListController/shoppingCart(user_id=46)}">购物车</a></li>
-            <li><a th:href="@{/ProductListController/collectionProduct(user_id=46)}">我的收藏</a></li>
+            <li><a th:href="@{/ProductListController/shoppingCart(userId=46)}">购物车</a></li>
+            <li><a th:href="@{/ProductListController/collectionProduct(userId=46)}">我的收藏</a></li>
             <li><a href="#">我的订单</a></li>
         </ol>
     </div>
@@ -90,12 +90,12 @@
                     </td>
                     <td th:width="158">
                         <input type="hidden" name="id" value="22">
-                        <a th:href="@{/ProductListController/toProduct(product_id=${shoppingCart.product_id})}">
+                        <a th:href="@{/ProductListController/toProduct(productId=${shoppingCart.productId})}">
                             <img th:src="${shoppingCart.product_picture}" height="60">
                         </a>
                     </td>
                     <td th:width="158"><a target="_blank"
-                                          th:href="@{/ProductListController/toProduct(product_id=${shoppingCart.product_id})}"
+                                          th:href="@{/ProductListController/toProduct(productId=${shoppingCart.productId})}"
                                           th:text="${shoppingCart.product_keywords}"></a></td>
                     <td th:width="158" th:text="'￥'+${shoppingCart.product_mallPrice}"></td>
                     <td th:width="158" th:text="${shoppingCart.shoppingCart_count}"></td>
@@ -104,11 +104,11 @@
                         <span class="subtotal"></span>
                     </td>
                     <td th:width="158">
-                        <form th:action="@{/ProductListController/moveToCollectionProduct(product_id=*{shoppingCart.product_id},shoppingCart_id=*{shoppingCart.shoppingCart_id},user_id=46)}"
+                        <form th:action="@{/ProductListController/moveToCollectionProduct(productId=*{shoppingCart.productId},shoppingCartId=*{shoppingCart.shoppingCartId},userId=46)}"
                               method="post">
                             <input style="height: 24px;" value="移入收藏" type="submit">
                         </form>
-                        <form th:action="@{/ProductListController/deleteShoppingProduct(shoppingCart_id=*{shoppingCart.shoppingCart_id},user_id=46)}"
+                        <form th:action="@{/ProductListController/deleteShoppingProduct(shoppingCartId=*{shoppingCart.shoppingCartId},userId=46)}"
                               method="post">
                             <input style="height: 24px;" value="删除" type="submit">
                         </form>

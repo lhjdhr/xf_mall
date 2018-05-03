@@ -15,7 +15,7 @@
         <tbody>
         <tr  th:each="user : ${user}">
             <td th:text="${user.user_name}"></td>
-            <a th:href="@{/IntegralController/integralList(user_id=${user.userId})}" class="btn btn-info">积分明细</a>
+            <a th:href="@{/IntegralController/integralList(userId=${user.userId})}" class="btn btn-info">积分明细</a>
             <a th:href="@{/AdminOrdersController/findUserOrder(user_name=${user.user_name})}" class="btn btn-info">我的订单</a>
         </tr>
         </tbody>

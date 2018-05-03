@@ -46,6 +46,7 @@ public class LogUserServiceImpl implements LogUserService {
     }
 
     //发送邮箱
+    @Override
     public void sendEmail(HttpServletRequest request,String user_mail){
         HttpSession session = request.getSession(true);
         SimpleMailMessage mainMessage = new SimpleMailMessage();
@@ -63,6 +64,58 @@ public class LogUserServiceImpl implements LogUserService {
         mainMessage.setSubject("注册新飞商城");
         //发送的内容
         mainMessage.setText("验证码："+authCode+"您正在注册新飞商城，请输入您的验证码继续完成注册");
+        System.out.println(mainMessage+"////////////////////////////////////////////////////////////");
+        System.out.println(mailSender+"-------------------------------------------");
+        mailSender.send(mainMessage);
+        System.out.println(mailSender);
+        System.out.println("ok");
+    }
+
+    //发送邮箱
+    @Override
+    public void sendEmail1(HttpServletRequest request,String user_mail){
+        HttpSession session = request.getSession(true);
+        SimpleMailMessage mainMessage = new SimpleMailMessage();
+        RandonNumberUtils randonNumberUtils = new RandonNumberUtils();
+        String authCode = randonNumberUtils.getRandonString(6);
+        System.out.println(authCode);
+        session.setMaxInactiveInterval(60 * 2);
+        session.setAttribute("authCode", authCode);
+        session.setAttribute("user_mail", user_mail);
+        //发送者
+        mainMessage.setFrom("huystar@126.com");
+        //接收者
+        mainMessage.setTo(user_mail);
+        //发送的标题
+        mainMessage.setSubject("修改手机号");
+        //发送的内容
+        mainMessage.setText("验证码："+authCode+" ， 您正在修改您的手机号，请继续");
+        System.out.println(mainMessage+"////////////////////////////////////////////////////////////");
+        System.out.println(mailSender+"-------------------------------------------");
+        mailSender.send(mainMessage);
+        System.out.println(mailSender);
+        System.out.println("ok");
+    }
+
+    //发送邮箱
+    @Override
+    public void sendEmail2(HttpServletRequest request,String user_mail){
+        HttpSession session = request.getSession(true);
+        SimpleMailMessage mainMessage = new SimpleMailMessage();
+        RandonNumberUtils randonNumberUtils = new RandonNumberUtils();
+        String authCode = randonNumberUtils.getRandonString(6);
+        System.out.println(authCode);
+        session.setMaxInactiveInterval(60 * 2);
+        session.setAttribute("authCode", authCode);
+        session.setAttribute("user_mail", user_mail);
+        //发送者
+        mainMessage.setFrom("huystar@126.com");
+        //接收者
+        mainMessage.setTo(user_mail);
+        //发送的标题
+        mainMessage.setSubject("找回密码");
+        //发送的内容
+        mainMessage.setText("验证码："+authCode+"您正在找回您的密码，输入验证码以继续");
         System.out.println(mainMessage+"////////////////////////////////////////////////////////////");
         System.out.println(mailSender+"-------------------------------------------");
         mailSender.send(mainMessage);

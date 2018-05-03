@@ -29,25 +29,25 @@ public class UerIntegralServiceImpl implements UserIntegralService {
 
     //通过用户id查询用户积分明细
     @Override
-    public List<UserIntegral> getUserIntegral(long user_id){
-        return userIntegralRepository.findByUserId(user_id);
+    public List<UserIntegral> getUserIntegral(long userId){
+        return userIntegralRepository.findByUserId(userId);
     }
 
     //收入积分明细
     @Override
-    public List<UserIntegral> getUserIntegralIncome(long user_id) {
-        return userIntegralRepository.findByIncome(user_id);
+    public List<UserIntegral> getUserIntegralIncome(long userId) {
+        return userIntegralRepository.findByIncome(userId);
     }
 
     //支出积分明细
     @Override
-    public List<UserIntegral> getUserIntegralExpend(long user_id){
-        return userIntegralRepository.findByExpend(user_id);
+    public List<UserIntegral> getUserIntegralExpend(long userId){
+        return userIntegralRepository.findByExpend(userId);
     }
 
     //在购买商品时自动添加积分明细
     @Override
-    public void save(long user_id,HttpServletRequest request){
+    public void save(long userId,HttpServletRequest request){
         Map<String, String[]> properties = request.getParameterMap();
         UserIntegral userIntegral = new UserIntegral();
         Product product = new Product();
@@ -58,7 +58,7 @@ public class UerIntegralServiceImpl implements UserIntegralService {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        userIntegral.setUser_id(user_id);
+        userIntegral.setUserId(userId);
         userIntegral.setProduct_keyword(product.getProduct_picture());
         userIntegral.setProduct_picture(product.getProduct_picture());
         userIntegral.setUserIntegral_vary(+1);
@@ -67,7 +67,7 @@ public class UerIntegralServiceImpl implements UserIntegralService {
 
     //删除积分记录
     @Override
-    public void delete(Long userIntegral_id){
-        userIntegralRepository.deleteById(userIntegral_id);
+    public void delete(Long userIntegralId){
+        userIntegralRepository.deleteById(userIntegralId);
     }
 }
