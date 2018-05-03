@@ -332,8 +332,8 @@ public class ProductServiceImpl implements ProductService {
 
     //删除收藏
     @Override
-    public void deleteCollection(long collection_id) {
-        collectionRepository.deleteById(collection_id);
+    public void deleteCollection(long collectionId) {
+        collectionRepository.deleteById(collectionId);
     }
 
 }

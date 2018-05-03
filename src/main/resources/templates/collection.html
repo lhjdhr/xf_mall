@@ -57,7 +57,7 @@
                 <a th:href="@{/ProductListController/toProduct(productId=${collection.productId})}" style='color: green' th:text="${collection.product_keywords}"></a>
             </p>
             <p>
-                <a th:href="@{/ProductListController/deleteCollectionProduct(collection_id=${collection.collection_id},userId=46)}" style='color: green'>删除该收藏</a>
+                <a th:href="@{/ProductListController/deleteCollectionProduct(collectionId=${collection.collectionId},userId=46)}" style='color: green'>删除该收藏</a>
             </p>
             <p>
                 <font color="#FF0000" th:text="'商城价：¥'+${collection.product_mallPrice}"></font>

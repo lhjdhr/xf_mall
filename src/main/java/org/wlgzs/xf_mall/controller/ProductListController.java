@@ -142,8 +142,8 @@ public class ProductListController {
      * @description 删除收藏
      */
     @RequestMapping("/deleteCollectionProduct")
-    public  ModelAndView deleteCollectionProduct(long collection_id,long userId){
-        productService.deleteCollection(collection_id);
+    public  ModelAndView deleteCollectionProduct(long collectionId,long userId){
+        productService.deleteCollection(collectionId);
         String url="redirect:/ProductListController/collectionProduct?userId="+userId;
         return new ModelAndView(url);
     }
