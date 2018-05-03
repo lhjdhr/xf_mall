@@ -218,8 +218,8 @@ public class ProductController {
      * @description 删除分类
      */
     @RequestMapping("/deleteProductCategory")
-    public ModelAndView deleteCategory(Long id) {
-        productService.deleteCategory(id);
+    public ModelAndView deleteCategory(Long categoryId) {
+        productService.deleteCategory(categoryId);
         return new ModelAndView("redirect:/AdminProductController/productCategoryList");
     }
     /**
@@ -229,8 +229,8 @@ public class ProductController {
      * @description 跳转至修改分类页面
      */
     @RequestMapping("/toAdminEditProductCategory")
-    public ModelAndView toEditCategory(Model model, Long id) {
-        ProductCategory productCategory = productService.findProductCategoryById(id);
+    public ModelAndView toEditCategory(Model model, long categoryId) {
+        ProductCategory productCategory = productService.findProductCategoryById(categoryId);
         model.addAttribute("productCategory", productCategory);
         return new ModelAndView("admin/adminEditProductCategory");
     }

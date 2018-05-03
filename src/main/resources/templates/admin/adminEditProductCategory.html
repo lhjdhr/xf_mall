@@ -11,7 +11,7 @@
 <br/><br/>
 <div class="with:80%">
     <form class="form-horizontal"   th:action="@{/AdminProductController/adminEditProductCategory}" th:object="${productCategory}"  method="post">
-        <input type="hidden" name="category_id" th:value="*{category_id}" />
+        <input type="hidden" name="category_id" th:value="*{categoryId}" />
         <div th:if="*{parent_name=='0'}">
             <p>此分类为一级分类</p>
         </div>

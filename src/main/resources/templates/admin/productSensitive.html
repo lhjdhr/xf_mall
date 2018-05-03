@@ -40,9 +40,9 @@
         </thead>
         <tbody>
         <tr  th:each="searchShield : ${searchShields}">
-            <th scope="row" th:text="${searchShield.searchShield_id}"></th>
+            <th scope="row" th:text="${searchShield.searchShieldId}"></th>
             <td th:text="${searchShield.searchShield_Sensitive}"></td>
-            <td><a th:href="@{/SearchShieldController/deleteProductSensitive(id=${searchShield.searchShield_id})}">delete</a></td>
+            <td><a th:href="@{/SearchShieldController/deleteProductSensitive(id=${searchShield.searchShieldId})}">delete</a></td>
         </tr>
         </tbody>
     </table>

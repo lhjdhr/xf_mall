@@ -172,8 +172,8 @@ public class ProductServiceImpl implements ProductService {
     }
     //删除分类
     @Override
-    public void deleteCategory(long id) {
-        productCategoryRepository.deleteById(id);
+    public void deleteCategory(long categoryId) {
+        productCategoryRepository.deleteById(categoryId);
     }
 
     //修改分类
@@ -184,8 +184,8 @@ public class ProductServiceImpl implements ProductService {
 
     //按id查找类别
     @Override
-    public ProductCategory findProductCategoryById(long id) {
-        return productCategoryRepository.findById(id);
+    public ProductCategory findProductCategoryById(long categoryId) {
+        return productCategoryRepository.findById(categoryId);
     }
 
     //添加购物车

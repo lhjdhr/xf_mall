@@ -36,9 +36,9 @@ public interface ProductService {
 
     void editCategory(ProductCategory productCategory);
 
-    void deleteCategory(long id);
+    void deleteCategory(long categoryId);
 
-    ProductCategory findProductCategoryById(long id);
+    ProductCategory findProductCategoryById(long categoryId);
 
     void save(long userId,long productId,HttpServletRequest request);
 
