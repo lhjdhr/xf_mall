@@ -41,9 +41,9 @@
             <td th:text="${order.order_purchaseTime}"></td>
             <td th:text="${order.order_status}"></td>
             <td><a th:href="@{/EstimateController/toAddEstimate(id=${order.order_id})}">评论</a></td>
-            <td><a th:href="@{/OrdersController/toChangeOrders(id=${order.order_id})}">修改</a></td>
-            <td><a th:href="@{/OrderController/orderDetails(id=${order.order_id})}">详情</a></td>
-            <td><a th:href="@{/OrderController/deleteOrder(id=${order.order_id})}">删除</a></td>
+            <td><a th:href="@{/AdminOrdersController/toChangeProductOrders(id=${order.order_id})}">修改</a></td>
+            <td><a th:href="@{/AdminOrdersController/orderDetails(id=${order.order_id})}">详情</a></td>
+            <td><a th:href="@{/AdminOrdersController/deleteOrder(id=${order.order_id})}">删除</a></td>
         </tr>
         </tbody>
     </table>

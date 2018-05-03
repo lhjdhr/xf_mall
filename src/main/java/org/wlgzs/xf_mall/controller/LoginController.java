@@ -107,7 +107,7 @@ public class LoginController {
                 return "adminIndex";
             } else {
                 model.addAttribute("user", user);
-                return "index";
+                return "Index";
             }
         } else {
             model.addAttribute("msg", "账号或密码错误");
