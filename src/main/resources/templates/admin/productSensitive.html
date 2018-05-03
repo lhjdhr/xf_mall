@@ -3,14 +3,28 @@
 <head>
     <meta charset="UTF-8"/>
     <title>用户列表</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 </head>
+<style>
+    .col-sm-2 {
+        width: 100%;
+    }
+</style>
 <body class="container">
 <br/>
 <h1>敏感词汇</h1>
 <br/><br/>
 <div class="with:80%">
-    <form th:action="@{/AdminProductController/findProductSensitive}"  method="post">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/AdminUserController/adminUserList}" class="btn btn-info">用户管理</a>
+        <a th:href="@{/AdminProductController/adminProductList}" class="btn btn-info">商品管理</a>
+        <a th:href="@{/AdminProductController/productCategoryList}" class="btn btn-info">分类管理</a>
+        <a th:href="@{/OrderController/allProductOrdersLists}" class="btn btn-info">订单管理</a>
+        <a th:href="@{/SearchShieldController/toProductSensitive}" class="btn btn-info">敏感词汇管理</a>
+        <a th:href="@{/AdminActivityController/activityProducts}" class="btn btn-info">活动管理</a>
+    </div>
+    <br/><br/>
+    <form th:action="@{/SearchShieldController/findProductSensitive}"  method="post">
         <div>
             <input type="text" id="search_shield_sensitive" name="search_shield_sensitive" th:value="*{searchShield_Sensitive}" placeholder="" >
             <input type="submit" value="搜索" class="btn btn-info" />
@@ -20,8 +34,7 @@
         <thead>
         <tr>
             <th>#</th>
-            <th>mail</th>
-            <th>Edit</th>
+            <th>敏感词</th>
             <th>Delete</th>
         </tr>
         </thead>
@@ -29,21 +42,18 @@
         <tr  th:each="searchShield : ${searchShields}">
             <th scope="row" th:text="${searchShield.searchShield_id}"></th>
             <td th:text="${searchShield.searchShield_Sensitive}"></td>
-            <td><a th:href="@{/AdminProductController/changeProductSensitive(id=${searchShield.searchShield_id})}">edit</a></td>
-            <td><a th:href="@{/AdminProductController/deleteProductSensitive(id=${searchShield.searchShield_id})}">delete</a></td>
+            <td><a th:href="@{/SearchShieldController/deleteProductSensitive(id=${searchShield.searchShield_id})}">delete</a></td>
         </tr>
         </tbody>
     </table>
 </div>
 <div class="form-group">
 </div>
-<form class="form-horizontal"   th:action="@{/AdminProductController/addProductSensitive}"  method="post">
+<form class="form-horizontal"   th:action="@{/SearchShieldController/addProductSensitive}"  method="post">
     <input type="text" class="form-control" name="searchShield_Sensitive"  id="searchShield_Sensitive" placeholder="敏感词汇"/>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <input type="submit" value="Submit" class="btn btn-info" />
-            &nbsp; &nbsp; &nbsp;
-            <input type="reset" value="Reset" class="btn btn-info" />
+            <input type="submit" value="添加敏感词汇" class="btn btn-info" />
         </div>
     </div>
 </form>

@@ -69,9 +69,9 @@ public class UserManagementController {
     @RequestMapping("changeInformation")
     public ModelAndView ModifyName(Model model, HttpServletRequest request) {
         Map<String, String[]> properties = request.getParameterMap();
-        String id = request.getParameter("user_id");
-        long user_id = Long.parseLong(id);
-        User user = userService.findUserById(user_id);
+        String id = request.getParameter("userId");
+        long userId = Long.parseLong(id);
+        User user = userService.findUserById(userId);
         try {
             BeanUtils.populate(user, properties);
         } catch (IllegalAccessException e) {
@@ -113,8 +113,8 @@ public class UserManagementController {
     public ModelAndView add(@RequestParam("file") MultipartFile myFileName, HttpSession session,
                             Model model, HttpServletRequest request) throws IOException {
         System.out.println("===================================");
-        String user_id = request.getParameter("user_id");
-        long id = Long.parseLong(user_id);
+        String userId = request.getParameter("userId");
+        long id = Long.parseLong(userId);
         String realName = "";
         String user_avatar = "";
         if (!myFileName.getOriginalFilename().equals("")) {
@@ -186,9 +186,9 @@ public class UserManagementController {
     @RequestMapping("changePhone")
     public ModelAndView changePhone(Model model, HttpServletRequest request){
         Map<String, String[]> properties = request.getParameterMap();
-        String id = request.getParameter("user_id");
-        long user_id = Long.parseLong(id);
-        User user = userService.findUserById(user_id);
+        String id = request.getParameter("userId");
+        long userId = Long.parseLong(id);
+        User user = userService.findUserById(userId);
         try {
             BeanUtils.populate(user, properties);
         } catch (IllegalAccessException e) {

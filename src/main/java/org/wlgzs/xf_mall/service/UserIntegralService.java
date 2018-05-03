@@ -12,15 +12,15 @@ import java.util.List;
  */
 public interface UserIntegralService {
 
-    List<UserIntegral> getUserIntegral(long user_id);
+    List<UserIntegral> getUserIntegral(long userId);
 
-    List<UserIntegral> getUserIntegralIncome(long user_id);
+    List<UserIntegral> getUserIntegralIncome(long userId);
 
-    List<UserIntegral> getUserIntegralExpend(long user_id);
+    List<UserIntegral> getUserIntegralExpend(long userId);
 
     UserIntegral findUserIntegralById(long id);
 
     void delete(Long userIntegral_id);
 
-    void save(long user_id,HttpServletRequest request);
+    void save(long userId,HttpServletRequest request);
 }

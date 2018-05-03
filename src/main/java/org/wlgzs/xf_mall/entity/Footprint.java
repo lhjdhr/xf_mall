@@ -19,8 +19,8 @@ public class Footprint {
     @Id
     @GeneratedValue()
     private long footprint_id;//足迹id
-    private long user_id;//用户id
-    private long product_id;//商品id
+    private long userId;//用户id
+    private long productId;//商品id
     @Column(nullable = false,length = 50)
     private String product_keywords;//商品关键字
     @Column(nullable = false)

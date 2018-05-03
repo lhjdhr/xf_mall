@@ -190,8 +190,8 @@ public class ProductServiceImpl implements ProductService {
 
     //添加购物车
     @Override
-    public void save(long user_id,long product_id,HttpServletRequest request) {
-        Product product = productRepository.findById(product_id);
+    public void save(long userId,long productId,HttpServletRequest request) {
+        Product product = productRepository.findById(productId);
 
         Map<String, String[]> properties = request.getParameterMap();
         ShoppingCart shoppingCart = new ShoppingCart();
@@ -202,33 +202,33 @@ public class ProductServiceImpl implements ProductService {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        ShoppingCart findShoppingCart = shoppingCartRepository.findByUserIdAndProductId(user_id,product_id);
+        ShoppingCart findShoppingCart = shoppingCartRepository.findByUserIdAndProductId(userId,productId);
         if(findShoppingCart != null){
             findShoppingCart.setShoppingCart_count(findShoppingCart.getShoppingCart_count()+shoppingCart.getShoppingCart_count());
             shoppingCartRepository.save(findShoppingCart);
         }
         if(findShoppingCart == null){
-            shoppingCart.setProduct_id(product_id);
+            shoppingCart.setProductId(productId);
             shoppingCart.setProduct_picture(product.getProduct_picture());
             shoppingCart.setProduct_counterPrice(product.getProduct_counterPrice());
             shoppingCart.setProduct_keywords(product.getProduct_keywords());
             shoppingCart.setProduct_mallPrice(product.getProduct_mallPrice());
             shoppingCart.setProduct_specification(product.getProduct_specification());
-            shoppingCart.setUser_id(user_id);
+            shoppingCart.setUserId(userId);
             shoppingCartRepository.save(shoppingCart);
         }
     }
 
     //查找用户购物车是否存在
     @Override
-    public ShoppingCart findByUserIdAndProductId(long user_id, long product_id) {
-        return shoppingCartRepository.findByUserIdAndProductId(user_id,product_id);
+    public ShoppingCart findByUserIdAndProductId(long userId, long productId) {
+        return shoppingCartRepository.findByUserIdAndProductId(userId,productId);
     }
 
     //添加收藏
     @Override
-    public void saveCollection(long user_id,long product_id,HttpServletRequest request) {
-        Product product = productRepository.findById(product_id);
+    public void saveCollection(long userId,long productId,HttpServletRequest request) {
+        Product product = productRepository.findById(productId);
 
         Map<String, String[]> properties = request.getParameterMap();
         Collection collection = new Collection();
@@ -239,31 +239,31 @@ public class ProductServiceImpl implements ProductService {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        Collection findCollection = collectionRepository.findByCollectionUserIdAndProductId(user_id,product_id);
+        Collection findCollection = collectionRepository.findByCollectionUserIdAndProductId(userId,productId);
         if(findCollection != null){
             collectionRepository.deleteById(findCollection.getCollection_id());
             collectionRepository.save(findCollection);
         }
         if(findCollection == null){
-            collection.setProduct_id(product_id);
+            collection.setProductId(productId);
             collection.setProduct_picture(product.getProduct_picture());
             collection.setProduct_keywords(product.getProduct_keywords());
             collection.setProduct_mallPrice(product.getProduct_mallPrice());
-            collection.setUser_id(user_id);
+            collection.setUserId(userId);
             collectionRepository.save(collection);
         }
     }
 
     //查找用户收藏是否存在
     @Override
-    public Collection findByCollectionUserIdAndProductId(long user_id, long product_id) {
-        return collectionRepository.findByCollectionUserIdAndProductId(user_id,product_id);
+    public Collection findByCollectionUserIdAndProductId(long userId, long productId) {
+        return collectionRepository.findByCollectionUserIdAndProductId(userId,productId);
     }
 
     //用户的购物车
     @Override
-    public List<ShoppingCart> findByUserIdCart(long user_id) {
-        List<ShoppingCart> shoppingCarts = shoppingCartRepository.findByUserIdCart(user_id);
+    public List<ShoppingCart> findByUserIdCart(long userId) {
+        List<ShoppingCart> shoppingCarts = shoppingCartRepository.findByUserIdCart(userId);
         String img;
         for(int i = 0; i < shoppingCarts.size(); i++) {
             if (shoppingCarts.get(i).getProduct_picture().contains(",")){
@@ -278,10 +278,10 @@ public class ProductServiceImpl implements ProductService {
 
     //购物车移至收藏
     @Override
-    public void moveToCollectionProduct(long shoppingCart_id, long user_id, long product_id, HttpServletRequest request) {
+    public void moveToCollectionProduct(long shoppingCart_id, long userId, long productId, HttpServletRequest request) {
         shoppingCartRepository.deleteById(shoppingCart_id);
 
-        Product product = productRepository.findById(product_id);
+        Product product = productRepository.findById(productId);
 
         Map<String, String[]> properties = request.getParameterMap();
         Collection collection = new Collection();
@@ -292,17 +292,17 @@ public class ProductServiceImpl implements ProductService {
         } catch (InvocationTargetException e) {
             e.printStackTrace();
         }
-        Collection findCollection = collectionRepository.findByCollectionUserIdAndProductId(user_id,product_id);
+        Collection findCollection = collectionRepository.findByCollectionUserIdAndProductId(userId,productId);
         if(findCollection != null){
             collectionRepository.deleteById(findCollection.getCollection_id());
             collectionRepository.save(findCollection);
         }
         if(findCollection == null){
-            collection.setProduct_id(product_id);
+            collection.setProductId(productId);
             collection.setProduct_picture(product.getProduct_picture());
             collection.setProduct_keywords(product.getProduct_keywords());
             collection.setProduct_mallPrice(product.getProduct_mallPrice());
-            collection.setUser_id(user_id);
+            collection.setUserId(userId);
             System.out.println();
             collectionRepository.save(collection);
         }
@@ -316,8 +316,8 @@ public class ProductServiceImpl implements ProductService {
 
     //用户的收藏
     @Override
-    public List<Collection> findByUserIdCollection(long user_id) {
-        List<Collection> collections = collectionRepository.findByUserIdCollection(user_id);
+    public List<Collection> findByUserIdCollection(long userId) {
+        List<Collection> collections = collectionRepository.findByUserIdCollection(userId);
         String img;
         for(int i = 0; i < collections.size(); i++) {
             if (collections.get(i).getProduct_picture().contains(",")){

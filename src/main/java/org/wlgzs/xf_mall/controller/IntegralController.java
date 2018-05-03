@@ -31,38 +31,38 @@ public class IntegralController {
 
     //遍历用户积分明细
     @RequestMapping("/IntegralController/integralList")
-    public String integralList(Model model,long user_id) {
-        List<UserIntegral> integralLists = userIntegralService.getUserIntegral(user_id);
+    public String integralList(Model model,long userId) {
+        List<UserIntegral> integralLists = userIntegralService.getUserIntegral(userId);
         model.addAttribute("integralLists", integralLists);
         return "UserIntegralList";
     }
 
     //遍历用户收入积分
     @RequestMapping("/IntegralController/UserIntegralIncome")
-    public String incomeList(Model model,long user_id) {
-        List<UserIntegral> integralLists = userIntegralService.getUserIntegralIncome(user_id);
+    public String incomeList(Model model,long userId) {
+        List<UserIntegral> integralLists = userIntegralService.getUserIntegralIncome(userId);
         model.addAttribute("integralLists", integralLists);
         return "UserIntegralList";
     }
 
     //遍历用户支出积分
     @RequestMapping("/IntegralController/UserIntegralExpend")
-    public String expendList(Model model,long user_id) {
-        List<UserIntegral> integralLists = userIntegralService.getUserIntegralExpend(user_id);
+    public String expendList(Model model,long userId) {
+        List<UserIntegral> integralLists = userIntegralService.getUserIntegralExpend(userId);
         model.addAttribute("integralLists", integralLists);
         return "UserIntegralList";
     }
 
     //在购买的同时添加积分明细
     @RequestMapping("/IntegralController/addUserIntegral")
-    public void AddUserIntegral(long user_id,long product_id,HttpServletRequest request) {
-        userIntegralService.save(user_id,request);
+    public void AddUserIntegral(long userId,long productId,HttpServletRequest request) {
+        userIntegralService.save(userId,request);
     }
 
     //删除积分记录
     @RequestMapping("/UserIntegralController/deleteUserIntegral")
-    public String delete(long userIntegral_id,long user_id) {
+    public String delete(long userIntegral_id,long userId) {
         userIntegralService.delete(userIntegral_id);
-        return "redirect:/IntegralController/integralList?user_id="+user_id;
+        return "redirect:/IntegralController/integralList?userId="+userId;
     }
 }

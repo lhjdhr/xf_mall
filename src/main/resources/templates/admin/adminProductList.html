@@ -3,13 +3,27 @@
 <head>
     <meta charset="UTF-8"/>
     <title>商品列表</title>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.css}"></link>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
 </head>
+<style>
+    .col-sm-2 {
+        width: 100%;
+    }
+</style>
 <body class="container">
 <br/>
 <h1>商品列表</h1>
 <br/><br/>
 <div class="with:80%">
+    <div class="col-sm-2 control-label">
+        <a th:href="@{/AdminUserController/adminUserList}" class="btn btn-info">用户管理</a>
+        <a th:href="@{/AdminProductController/adminProductList}" class="btn btn-info">商品管理</a>
+        <a th:href="@{/AdminProductController/productCategoryList}" class="btn btn-info">分类管理</a>
+        <a th:href="@{/OrderController/allProductOrdersLists}" class="btn btn-info">订单管理</a>
+        <a th:href="@{/SearchShieldController/toProductSensitive}" class="btn btn-info">敏感词汇管理</a>
+        <a th:href="@{/AdminActivityController/activityProducts}" class="btn btn-info">活动管理</a>
+    </div>
+    <br/><br/>
     <form th:action="@{/AdminProductController/adminFindProduct}"  method="post">
         <div>
             <input type="text" id="product_keywords" name="product_keywords" th:value="*{product_keywords}" placeholder="关键字" >
@@ -43,8 +57,8 @@
             <td th:text="${product.product_keywords}"></td>
             <td th:text="${product.product_picture}"></td>
             <td th:text="${product.product_specification}"></td>
-            <td><a th:href="@{/AdminProductController/toAdminEditProduct(product_id=${product.productId})}">edit</a></td>
-            <td><a th:href="@{/AdminProductController/adminDeleteProduct(product_id=${product.productId})}">delete</a></td>
+            <td><a th:href="@{/AdminProductController/toAdminEditProduct(productId=${product.productId})}">edit</a></td>
+            <td><a th:href="@{/AdminProductController/adminDeleteProduct(productId=${product.productId})}">delete</a></td>
         </tr>
         </tbody>
     </table>

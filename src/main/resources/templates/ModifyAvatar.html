@@ -6,7 +6,7 @@
 </head>
 <body>
 <form th:action="@{/UserManagementController/ModifyAvatar}" th:object="${user}" method="post" enctype="multipart/form-data">
-    <input type="hidden" th:value="*{user_id}" name="user_id">
+    <input type="hidden" th:value="*{userId}" name="userId">
     <input type="file" name="file">
     <input type="submit" th:value="提交">
 </form>

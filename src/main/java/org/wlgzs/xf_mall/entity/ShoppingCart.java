@@ -15,8 +15,8 @@ public class ShoppingCart {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long shoppingCart_id;//购物车id
-    private long product_id;//商品id
-    private long user_id;//用户id
+    private long productId;//商品id
+    private long userId;//用户id
     @Column(nullable = false,length = 200)
     private String product_picture;//图片
     @Column(nullable = false,length = 50)

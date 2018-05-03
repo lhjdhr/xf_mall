@@ -14,9 +14,9 @@ import java.util.List;
  */
 public interface ShoppingCartRepository  extends JpaRepository<ShoppingCart, Long>,JpaSpecificationExecutor<ShoppingCart> {
 
-    @Query(value = "SELECT o FROM ShoppingCart o WHERE o.user_id=?1")
-    List<ShoppingCart> findByUserIdCart(long user_id);
+    @Query(value = "SELECT o FROM ShoppingCart o WHERE o.userId=?1")
+    List<ShoppingCart> findByUserIdCart(long userId);
 
-    @Query(value = "SELECT o FROM ShoppingCart o WHERE o.user_id=?1 AND o.product_id=?2")
-    ShoppingCart findByUserIdAndProductId(long user_id,long product_id);
+    @Query(value = "SELECT o FROM ShoppingCart o WHERE o.userId=?1 AND o.productId=?2")
+    ShoppingCart findByUserIdAndProductId(long userId,long productId);
 }

@@ -124,8 +124,8 @@ public class ProductController {
      * @description 跳转至修改商品页面
      */
     @RequestMapping("/toAdminEditProduct")
-    public ModelAndView toEdit(Model model, long product_id) {
-        Product product=productService.findProductById(product_id);
+    public ModelAndView toEdit(Model model, long productId) {
+        Product product=productService.findProductById(productId);
         model.addAttribute("product", product);
         return new ModelAndView("admin/adminEditProduct");
     }
@@ -147,8 +147,8 @@ public class ProductController {
      * @description 删除商品
      */
     @RequestMapping("/adminDeleteProduct")
-    public ModelAndView delete(long product_id) {
-        productService.delete(product_id);
+    public ModelAndView delete(long productId) {
+        productService.delete(productId);
         return new ModelAndView("redirect:/AdminProductController/adminProductList");
     }
     /**

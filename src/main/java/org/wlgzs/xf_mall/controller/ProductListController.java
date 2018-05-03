@@ -65,86 +65,86 @@ public class ProductListController {
     }
     /**
      * @author 阿杰
-     * @param [model, user_id, productId, request]
+     * @param [model, userId, productId, request]
      * @return org.springframework.web.servlet.ModelAndView
      * @description 添加购物车
      */
     @RequestMapping("/addShoppingProduct")
-    public  ModelAndView addShoppingProduct(long user_id,long productId,HttpServletRequest request){
-        productService.save(user_id,productId,request);
+    public  ModelAndView addShoppingProduct(long userId,long productId,HttpServletRequest request){
+        productService.save(userId,productId,request);
         String url="redirect:/ProductListController/toProduct?productId="+productId;
         return new ModelAndView(url);
     }
     /**
      * @author 阿杰
-     * @param [model, user_id, productId, request]
+     * @param [model, userId, productId, request]
      * @return org.springframework.web.servlet.ModelAndView
      * @description 添加收藏
      */
     @RequestMapping("/addCollectionProduct")
-    public  ModelAndView addCollectionProduct(long user_id,long productId,HttpServletRequest request){
-        productService.saveCollection(user_id,productId,request);
+    public  ModelAndView addCollectionProduct(long userId,long productId,HttpServletRequest request){
+        productService.saveCollection(userId,productId,request);
         String url="redirect:/ProductListController/toProduct?productId="+productId;
         return new ModelAndView(url);
     }
     /**
      * @author 阿杰
-     * @param [model, user_id]
+     * @param [model, userId]
      * @return org.springframework.web.servlet.ModelAndView
      * @description 跳转至购物车
      */
     @RequestMapping("/shoppingCart")
-    public ModelAndView toShoppingCart(Model model,long user_id){
-        List<ShoppingCart> shoppingCarts = productService.findByUserIdCart(user_id);
+    public ModelAndView toShoppingCart(Model model,long userId){
+        List<ShoppingCart> shoppingCarts = productService.findByUserIdCart(userId);
         model.addAttribute("shoppingCarts",shoppingCarts);
         return new ModelAndView("shoppingCart");
     }
     /**
      * @author 阿杰
-     * @param [shoppingCart_id, user_id, productId, request]
+     * @param [shoppingCart_id, userId, productId, request]
      * @return org.springframework.web.servlet.ModelAndView
      * @description 购物车移至收藏
      */
     @RequestMapping("/moveToCollectionProduct")
-    public  ModelAndView moveToCollectionProduct(long shoppingCart_id,long user_id,long productId,HttpServletRequest request){
-        productService.moveToCollectionProduct(shoppingCart_id,user_id,productId,request);
-        String url="redirect:/ProductListController/shoppingCart?user_id="+user_id;
+    public  ModelAndView moveToCollectionProduct(long shoppingCart_id,long userId,long productId,HttpServletRequest request){
+        productService.moveToCollectionProduct(shoppingCart_id,userId,productId,request);
+        String url="redirect:/ProductListController/shoppingCart?userId="+userId;
         return new ModelAndView(url);
     }
     /**
      * @author 阿杰
-     * @param [shoppingCart_id, user_id]
+     * @param [shoppingCart_id, userId]
      * @return org.springframework.web.servlet.ModelAndView
      * @description 删除购物车
      */
     @RequestMapping("/deleteShoppingProduct")
-    public  ModelAndView deleteShoppingProduct(long shoppingCart_id,long user_id){
+    public  ModelAndView deleteShoppingProduct(long shoppingCart_id,long userId){
         productService.deleteShoppingCart(shoppingCart_id);
-        String url="redirect:/ProductListController/shoppingCart?user_id="+user_id;
+        String url="redirect:/ProductListController/shoppingCart?userId="+userId;
         return new ModelAndView(url);
     }
     /**
      * @author 阿杰
-     * @param [model, user_id, collection_id]
+     * @param [model, userId, collection_id]
      * @return org.springframework.web.servlet.ModelAndView
      * @description 跳转至用户的收藏
      */
     @RequestMapping("/collectionProduct")
-    public ModelAndView toCollection(Model model,long user_id){
-        List<Collection> collections = productService.findByUserIdCollection(user_id);
+    public ModelAndView toCollection(Model model,long userId){
+        List<Collection> collections = productService.findByUserIdCollection(userId);
         model.addAttribute("collections",collections);
         return new ModelAndView("collection");
     }
     /**
      * @author 阿杰
-     * @param [collection_id, user_id]
+     * @param [collection_id, userId]
      * @return org.springframework.web.servlet.ModelAndView
      * @description 删除收藏
      */
     @RequestMapping("/deleteCollectionProduct")
-    public  ModelAndView deleteCollectionProduct(long collection_id,long user_id){
+    public  ModelAndView deleteCollectionProduct(long collection_id,long userId){
         productService.deleteCollection(collection_id);
-        String url="redirect:/ProductListController/collectionProduct?user_id="+user_id;
+        String url="redirect:/ProductListController/collectionProduct?userId="+userId;
         return new ModelAndView(url);
     }
 }
