@@ -104,7 +104,7 @@
                         <span class="subtotal"></span>
                     </td>
                     <td th:width="158">
-                        <form th:action="@{/ProductListController/moveToCollectionProduct(productId=*{shoppingCart.productId},shoppingCart_id=*{shoppingCart.shoppingCart_id},userId=46)}"
+                        <form th:action="@{/ProductListController/moveToCollectionProduct(productId=*{shoppingCart.productId},shoppingCartId=*{shoppingCart.shoppingCartId},userId=46)}"
                               method="post">
                             <input style="height: 24px;" value="移入收藏" type="submit">
                         </form>

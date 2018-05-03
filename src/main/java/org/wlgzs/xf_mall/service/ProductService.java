@@ -56,6 +56,6 @@ public interface ProductService {
 
     List<Collection> findByUserIdCollection(long userId);
 
-    void deleteCollection(long collection_id);
+    void deleteCollection(long collectionId);
 
 }
